@@ -2,19 +2,19 @@ import React, {
   Component
 } from 'react';
 import {
-  View, StyleSheet, Text, FlatList
+  StyleSheet, View, Text
 } from 'react-native';
 import {
-  Colors, Sizes
-} from '../Const';
-import {
-  Actions
-} from 'react-native-router-flux';
+  Sizes, Colors
+} from '../../Const';
 
-export default class Main extends Component {
+export default class RestaurantCard extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Text>
+          Hello
+        </Text>
       </View>
     );
   }
@@ -22,7 +22,7 @@ export default class Main extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: Colors.Background
+    padding: Sizes.OuterFrame,
+    backgroundColor: Colors.Foreground
   }
 });

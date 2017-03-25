@@ -1,25 +1,23 @@
+
+// defined colors
+let Background: '#FFFFFF';
+let Foreground: Background;
+let Text: '#111111';
+let Primary: '#1DCAFF';
+let Secondary: '#66C75C';
+let Transparent: 'rgba(255, 255, 255, 0)'
+
 export const Colors = {
 
-  // scheme
-  Primary: '#66C75C',
-
   // backgrounds
-  Background: '#282E37',
-  Foreground: '#202633',
-  ContentBackground: '#ffffff',
-  FadedContentBackground: '#232938',
-  ToolbarBackground: '#66c75c',
-  ModalBackground: '#66C75C',
+  Background: Background,
+  Foreground: Primary,
+  Transparent: Transparent,
 
   // text
-  Text: '#FFFFFF',
-  LightText: 'rgba(255, 255, 255, 0.5)',
-  LighterText: 'rgba(255, 255, 255, 0.25)',
-  LightestText: 'rgba(255, 255, 255, 0.1)',
-  AlternateText: '#222222',
-
-  // common
-  Transparent: 'rgba(0, 0, 0, 0)'
+  Text: Text,
+  AlternateText: Background,
+  EmphasizedText: Primary
 };
 
 export default Colors;
