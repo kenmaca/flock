@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react';
 import {
-  View, StyleSheet, Text
+  View, StyleSheet, Text, FlatList
 } from 'react-native';
 import {
   Colors, Sizes
