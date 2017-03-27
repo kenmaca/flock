@@ -34,6 +34,11 @@ export default class RestaurantCard extends Component {
           <AvatarGroup
             users={[1, 2, 3]} />
         </View>
+        <View style={styles.content}>
+          <Text style={styles.description}>
+            Boralia celebrates the historic origins of Canadian cuisine. Our menu draws inspiration from traditional Aboriginal dishes, as well as the recipes of early settlers and immigrants of the 18th and 19th centuries.
+          </Text>
+        </View>
       </Card>
     );
   }
@@ -68,5 +73,11 @@ const styles = StyleSheet.create({
     fontSize: Sizes.SmallText,
     fontStyle: 'italic',
     color: Colors.SubduedText
+  },
+
+  description: {
+    fontWeight: '100',
+    fontSize: Sizes.SmallText,
+    color: Colors.Text
   }
 });
