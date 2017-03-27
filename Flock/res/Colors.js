@@ -1,23 +1,27 @@
 
 // defined colors
-let Background = '#FFFFFF';
-let Foreground = '#000000';
-let Text = '#FFFFFF';
+let Background = '#EEEEEE';
+let Foreground = '#FFFFFF';
+let Black = '#000000';
+let DarkGrey = '#AAAAAA';
+let Text = Black;
 let Primary = '#1DCAFF';
 let Secondary = '#66C75C';
-let Transparent = 'rgba(255, 255, 255, 0)'
+let Transparent = 'rgba(255, 255, 255, 0)';
 
 export const Colors = {
 
   // backgrounds
   Background: Background,
   Foreground: Foreground,
+  MenuBackground: Black,
   Transparent: Transparent,
 
   // text
   Text: Text,
-  AlternateText: Background,
-  EmphasizedText: Primary
+  AlternateText: Foreground,
+  EmphasizedText: Primary,
+  SubduedText: DarkGrey
 };
 
 export default Colors;

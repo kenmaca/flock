@@ -12,9 +12,7 @@ import {
 } from 'react-native-router-flux';
 
 // components
-import {
-  SearchBar, Card
-} from 'react-native-elements';
+import RestaurantCard from '../components/restaurants/RestaurantCard';
 
 export default class Main extends Component {
   constructor(props) {
@@ -26,16 +24,8 @@ export default class Main extends Component {
 
   renderItem({item, index}) {
     return (
-      <Card
-        key={item}
-        title='BORALIA'
-        image={{
-          uri: 'https://s3-media2.fl.yelpcdn.com/bphoto/YWhgTgKx2t-0uZ1W6We6NQ/o.jpg'
-        }}>
-        <Text>
-          Boralia celebrates the historic origins of Canadian cuisine. Our menu draws inspiration from traditional Aboriginal dishes, as well as the recipes of early settlers and immigrants of the 18th and 19th centuries.
-        </Text>
-      </Card>
+      <RestaurantCard
+        key={item} />
     );
   }
 
@@ -47,10 +37,6 @@ export default class Main extends Component {
             style={styles.title}>
             FLOCK
           </Text>
-          <SearchBar
-            containerStyle={styles.searchContainer}
-            inputStyle={styles.searchInput}
-            placeholder='Johnny Appleseed' />
         </View>
         <FlatList
           keyExtractor={(item, index) => index}
@@ -65,18 +51,22 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
     backgroundColor: Colors.Background
   },
 
+  // header
+
   header: {
     alignItems: 'center',
-    backgroundColor: Colors.Foreground,
-    padding: Sizes.InnerFrame / 2,
+    alignSelf: 'stretch',
+    backgroundColor: Colors.MenuBackground,
+    padding: Sizes.InnerFrame,
     paddingTop: Sizes.OuterFrame * 2,
   },
 
   title: {
-    color: Colors.Text,
+    color: Colors.AlternateText,
     fontSize: Sizes.H2,
     letterSpacing: 5,
     fontWeight: '200'
@@ -84,16 +74,19 @@ const styles = StyleSheet.create({
 
   searchContainer: {
     alignSelf: 'stretch',
-    backgroundColor: Colors.Foreground,
-    borderTopColor: Colors.Foreground,
-    borderBottomColor: Colors.Foreground
+    backgroundColor: Colors.MenuBackground,
+    borderTopWidth: 0,
+    borderBottomWidth: 0
   },
 
   searchInput: {
     fontWeight: '100'
   },
 
+  // list
+
   list: {
-    flex: 1
+    flex: 1,
+    alignSelf: 'stretch'
   }
 });

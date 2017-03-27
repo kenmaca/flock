@@ -13,7 +13,7 @@ export const Sizes = {
   H2: 21,
   H3: 14,
   Text: 12,
-  SmallText: 8,
+  SmallText: 10,
 
   // weights
   Bold: '600',
