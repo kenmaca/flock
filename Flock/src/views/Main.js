@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react';
 import {
-  View, StyleSheet, Text, FlatList
+  View, StyleSheet, Text, FlatList, ScrollView
 } from 'react-native';
 import {
   Colors, Sizes
@@ -12,19 +12,29 @@ import {
 } from 'react-native-router-flux';
 
 // components
+import HeaderText from '../components/common/HeaderText';
 import RestaurantCard from '../components/restaurants/RestaurantCard';
+import UserCard from '../components/users/UserCard';
+import FollowUserCard from '../components/users/FollowUserCard';
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
 
     // bindings
-    this.renderItem = this.renderItem.bind(this);
+    this.renderRestaurantItem = this.renderRestaurantItem.bind(this);
   }
 
-  renderItem({item, index}) {
+  renderRestaurantItem({item, index}) {
     return (
       <RestaurantCard
+        key={item} />
+    );
+  }
+
+  renderUserItem({item, index}) {
+    return (
+      <UserCard
         key={item} />
     );
   }
@@ -38,11 +48,26 @@ export default class Main extends Component {
             FLOCK
           </Text>
         </View>
-        <FlatList
-          keyExtractor={(item, index) => index}
-          data={[1, 2, 3]}
-          renderItem={this.renderItem}
-          style={styles.list} />
+        <ScrollView>
+          <HeaderText text='IN YOUR FLOCK' />
+          <ScrollView
+            horizontal>
+            <FollowUserCard
+              key='user-search' />
+            <FlatList
+              horizontal
+              keyExtractor={(item, index) => `user-${index}`}
+              data={[1, 2, 3, 4, 5, 6, 7, 8]}
+              renderItem={this.renderUserItem}
+              style={styles.userList} />
+          </ScrollView>
+          <HeaderText text='RESTAURANTS FREQUENTED' />
+          <FlatList
+            keyExtractor={(item, index) => `resto-${index}`}
+            data={[1, 2, 3]}
+            renderItem={this.renderRestaurantItem}
+            style={styles.restoList} />
+        </ScrollView>
       </View>
     );
   }
@@ -84,8 +109,11 @@ const styles = StyleSheet.create({
   },
 
   // list
+  userList: {
+    alignSelf: 'stretch'
+  },
 
-  list: {
+  restoList: {
     flex: 1,
     alignSelf: 'stretch'
   }
