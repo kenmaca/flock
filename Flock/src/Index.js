@@ -11,8 +11,12 @@ import {
   Colors, Sizes
 } from './Const';
 
+// components
+import * as Animatable from 'react-native-animatable';
+
 // views
 import Main from './views/Main';
+import Search from './views/Search';
 import Web from './views/Web';
 
 export default class Index extends Component {
@@ -20,10 +24,11 @@ export default class Index extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text
+          <Animatable.Text
+            animation='fadeIn'
             style={styles.title}>
             FLOCK
-          </Text>
+          </Animatable.Text>
         </View>
         <Router>
           <Scene
@@ -34,6 +39,10 @@ export default class Index extends Component {
                 key='main'
                 component={Main}
                 type='replace' />
+              <Scene
+                key='search'
+                component={Search}
+                animation='fade' />
               <Scene
                 key='web'
                 component={Web} />

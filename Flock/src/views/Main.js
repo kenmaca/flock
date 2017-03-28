@@ -32,6 +32,7 @@ export default class Main extends Component {
           <HeaderText text='IN YOUR FLOCK' />
           <ScrollView
             showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.userScroll}
             horizontal>
             <FollowUserCard
               key='user-search' />
@@ -73,6 +74,10 @@ const styles = StyleSheet.create({
   },
 
   // list
+  userScroll: {
+    paddingRight: Sizes.InnerFrame
+  },
+
   userList: {
     alignSelf: 'stretch'
   }

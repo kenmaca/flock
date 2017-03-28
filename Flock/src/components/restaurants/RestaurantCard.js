@@ -43,6 +43,7 @@ export default class RestaurantCard extends Component {
           </View>
         </Card>
         <Question />
+        <Question />
       </View>
     );
   }

@@ -2,11 +2,14 @@ import React, {
   Component
 } from 'react';
 import {
-  StyleSheet, View, Text
+  StyleSheet, View, Text, TouchableOpacity
 } from 'react-native';
 import {
   Sizes, Colors
 } from '../../Const';
+import {
+  Actions
+} from 'react-native-router-flux';
 
 // components
 import {
@@ -16,16 +19,19 @@ import {
 export default class FollowUserCard extends Component {
   render() {
     return (
-      <Card
-        containerStyle={styles.container}>
-        <Icon
-          name='group-add'
-          color={Colors.AlternateText}
-          size={50} />
-        <Text style={styles.title}>
-          FOLLOW
-        </Text>
-      </Card>
+      <TouchableOpacity
+        onPress={Actions.search}>
+        <Card
+          containerStyle={styles.container}>
+          <Icon
+            name='group-add'
+            color={Colors.AlternateText}
+            size={50} />
+          <Text style={styles.title}>
+            FOLLOW
+          </Text>
+        </Card>
+      </TouchableOpacity>
     );
   }
 }
