@@ -36,11 +36,11 @@ export default class Profile extends Component {
                 Alexandra Lee
               </Text>
               <Text style={[Styles.Text, Styles.Emphasized, styles.username]}>
-                @LEXYGIRL
+                @lexigirl
               </Text>
             </View>
             <Button
-              title='FOLLOW'
+              title='ADD TO FLOCK'
               fontSize={Sizes.SmallText}
               backgroundColor={Colors.PositiveButton}
               buttonStyle={styles.follow}
@@ -63,7 +63,7 @@ export default class Profile extends Component {
                 color: Colors.PositiveButton
               }} />
               <Button
-                title='Following 38'
+                title='38 In Flock'
                 fontSize={Sizes.SmallText}
                 backgroundColor={Colors.Transparent}
                 buttonStyle={styles.follow}

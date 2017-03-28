@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react';
 import {
-  View, StyleSheet, Text, FlatList
+  View, StyleSheet, Text, FlatList, ScrollView, TouchableOpacity
 } from 'react-native';
 import {
   Colors, Sizes, Styles
@@ -12,6 +12,7 @@ import {
 } from 'react-native-router-flux';
 
 // components
+import HeaderText from '../components/common/HeaderText';
 import * as Animatable from 'react-native-animatable';
 import {
   SearchBar, ListItem
@@ -20,17 +21,20 @@ import {
 export default class Search extends Component {
   renderItem({item, index}) {
     return (
-      <ListItem
-        key={index}
-        roundAvatar
-        title='Alexandra Lee'
-        titleStyle={[Styles.Text, Styles.Emphasized]}
-        subtitle='lexigirl'
-        subtitleStyle={Styles.Text}
-        avatar={{
-          uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'
-        }}
-        avatarStyle={styles.avatar} />
+      <TouchableOpacity
+        onPress={Actions.profile}>
+        <ListItem
+          key={index}
+          roundAvatar
+          title='Alexandra Lee'
+          titleStyle={[Styles.Text, Styles.Emphasized]}
+          subtitle='@lexigirl'
+          subtitleStyle={Styles.Text}
+          avatar={{
+            uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'
+          }}
+          avatarStyle={styles.avatar} />
+      </TouchableOpacity>
     );
   }
 
@@ -48,11 +52,21 @@ export default class Search extends Component {
             inputStyle={styles.searchInput}
             placeholder='Search people' />
         </View>
-        <FlatList
-          keyExtractor={(item, index) => index}
-          data={[1, 2, 3, 4]}
-          renderItem={this.renderItem}
-          style={styles.list} />
+        <ScrollView
+          style={styles.scroll}>
+          <HeaderText text='PREVIOUSLY FOLLOWED' />
+          <FlatList
+            keyExtractor={(item, index) => index}
+            data={[1, 2, 3, 4]}
+            renderItem={this.renderItem}
+            style={styles.list} />
+          <HeaderText text='POPULAR' />
+          <FlatList
+            keyExtractor={(item, index) => index}
+            data={[1, 2, 3, 4]}
+            renderItem={this.renderItem}
+            style={styles.list} />
+        </ScrollView>
       </Animatable.View>
     );
   }
@@ -80,6 +94,11 @@ const styles = StyleSheet.create({
     color: Colors.Text,
     fontWeight: '100',
     fontSize: Sizes.Text,
+  },
+
+  scroll: {
+    flex: 1,
+    alignSelf: 'stretch'
   },
 
   list: {

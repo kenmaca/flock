@@ -26,7 +26,7 @@ export default class UserCard extends Component {
             Styles.Text,
             Styles.Emphasized
           ]}>
-          LEXYGIRL
+          @lexygirl
         </Text>
       </Card>
     );
