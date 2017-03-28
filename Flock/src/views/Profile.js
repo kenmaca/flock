@@ -86,13 +86,15 @@ export default class Profile extends Component {
                 }} />
           </View>
         </View>
-        <ButtonGroup
-          selectedIndex={1}
-          onPress={() => {}}
-          buttons={['Frequented', 'Possibly Interested']}
-          textStyle={Styles.Text}
-          containerStyle={styles.buttons} />
-        <RestaurantList />
+        <ScrollView>
+          <ButtonGroup
+            selectedIndex={1}
+            onPress={() => {}}
+            buttons={['Frequented', 'Possibly Interested']}
+            textStyle={Styles.Text}
+            containerStyle={styles.buttons} />
+          <RestaurantList />
+        </ScrollView>
       </View>
     );
   }
