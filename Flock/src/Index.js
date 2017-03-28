@@ -2,13 +2,13 @@ import React, {
   Component
 } from 'react';
 import {
-  View, StyleSheet
+  View, StyleSheet, Text
 } from 'react-native';
 import {
   Router, Scene, Actions
 } from 'react-native-router-flux';
 import {
-  Colors
+  Colors, Sizes
 } from './Const';
 
 // views
@@ -19,6 +19,12 @@ export default class Index extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.header}>
+          <Text
+            style={styles.title}>
+            FLOCK
+          </Text>
+        </View>
         <Router>
           <Scene
             hideNavBar
@@ -42,5 +48,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.Background
-  }
+  },
+
+  // header
+  header: {
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    backgroundColor: Colors.MenuBackground,
+    padding: Sizes.InnerFrame,
+    paddingTop: Sizes.OuterFrame * 2,
+  },
+
+  title: {
+    color: Colors.AlternateText,
+    fontSize: Sizes.H2,
+    letterSpacing: 5,
+    fontWeight: '200'
+  },
 });

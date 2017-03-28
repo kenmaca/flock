@@ -14,7 +14,7 @@ export const Colors = {
   // backgrounds
   Background: Background,
   Foreground: Foreground,
-  MenuBackground: Black,
+  MenuBackground: Primary,
   Transparent: Transparent,
 
   // text

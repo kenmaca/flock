@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react';
 import {
-  StyleSheet, View, ListView
+  StyleSheet, View, FlatList
 } from 'react-native';
 import {
   Sizes, Colors
@@ -10,37 +10,33 @@ import {
 
 // components
 import RestaurantCard from './RestaurantCard';
+import HeaderText from '../common/HeaderText';
 
 export default class RestaurantList extends Component {
   constructor(props) {
     super(props);
-    this.componentWillReceiveProps(props);
 
     // bindings
-    this.renderRow = this.renderRow.bind(this);
+    this.renderRestaurantItem = this.renderRestaurantItem.bind(this);
   }
 
-  componentWillReceiveProps(props) {
-
-    // update restaurant list
-    this.rows = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 != r2
-    }).cloneWithRows(props.restaurants);
-  }
-
-  renderRow(restaurantId) {
+  renderRestaurantItem({item, index}) {
     return (
-      <RestaurantCard id={restaurantId} />
+      <RestaurantCard
+        key={item} />
     );
   }
 
   render() {
     return (
-      <ListView
-        enableEmptySections
-        style={styles.container}
-        dataSource={this.rows}
-        renderRow={this.renderRow} />
+      <View style={styles.container}>
+        <HeaderText text='RESTAURANTS FREQUENTED' />
+        <FlatList
+          keyExtractor={(item, index) => `resto-${index}`}
+          data={[1, 2, 3]}
+          renderItem={this.renderRestaurantItem}
+          style={styles.list} />
+      </View>
     );
   }
 }
@@ -48,5 +44,10 @@ export default class RestaurantList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+
+  list: {
+    flex: 1,
+    alignSelf: 'stretch'
   }
 });

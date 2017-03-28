@@ -13,25 +13,11 @@ import {
 
 // components
 import HeaderText from '../components/common/HeaderText';
-import RestaurantCard from '../components/restaurants/RestaurantCard';
+import RestaurantList from '../components/restaurants/RestaurantList';
 import UserCard from '../components/users/UserCard';
 import FollowUserCard from '../components/users/FollowUserCard';
 
 export default class Main extends Component {
-  constructor(props) {
-    super(props);
-
-    // bindings
-    this.renderRestaurantItem = this.renderRestaurantItem.bind(this);
-  }
-
-  renderRestaurantItem({item, index}) {
-    return (
-      <RestaurantCard
-        key={item} />
-    );
-  }
-
   renderUserItem({item, index}) {
     return (
       <UserCard
@@ -42,15 +28,10 @@ export default class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Text
-            style={styles.title}>
-            FLOCK
-          </Text>
-        </View>
         <ScrollView>
           <HeaderText text='IN YOUR FLOCK' />
           <ScrollView
+            showsHorizontalScrollIndicator={false}
             horizontal>
             <FollowUserCard
               key='user-search' />
@@ -61,12 +42,7 @@ export default class Main extends Component {
               renderItem={this.renderUserItem}
               style={styles.userList} />
           </ScrollView>
-          <HeaderText text='RESTAURANTS FREQUENTED' />
-          <FlatList
-            keyExtractor={(item, index) => `resto-${index}`}
-            data={[1, 2, 3]}
-            renderItem={this.renderRestaurantItem}
-            style={styles.restoList} />
+          <RestaurantList />
         </ScrollView>
       </View>
     );
@@ -81,7 +57,6 @@ const styles = StyleSheet.create({
   },
 
   // header
-
   header: {
     alignItems: 'center',
     alignSelf: 'stretch',
@@ -97,24 +72,8 @@ const styles = StyleSheet.create({
     fontWeight: '200'
   },
 
-  searchContainer: {
-    alignSelf: 'stretch',
-    backgroundColor: Colors.MenuBackground,
-    borderTopWidth: 0,
-    borderBottomWidth: 0
-  },
-
-  searchInput: {
-    fontWeight: '100'
-  },
-
   // list
   userList: {
-    alignSelf: 'stretch'
-  },
-
-  restoList: {
-    flex: 1,
     alignSelf: 'stretch'
   }
 });
