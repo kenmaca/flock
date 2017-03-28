@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     paddingRight: Sizes.InnerFrame,
     marginRight: 0,
     shadowColor: Colors.Transparent,
-    backgroundColor: Colors.MenuBackground
+    backgroundColor: Colors.PositiveButton
   },
 
   title: {

@@ -5,7 +5,7 @@ import {
   StyleSheet, View, Text
 } from 'react-native';
 import {
-  Sizes, Colors
+  Sizes, Colors, Styles
 } from '../../Const';
 
 // components
@@ -20,7 +20,12 @@ export default class UserCard extends Component {
       <Card
         containerStyle={styles.container}>
         <Avatar size={50} />
-        <Text style={styles.title}>
+        <Text
+          style={[
+            styles.title,
+            Styles.Text,
+            Styles.Emphasized
+          ]}>
           LEXYGIRL
         </Text>
       </Card>
@@ -38,9 +43,6 @@ const styles = StyleSheet.create({
 
   title: {
     textAlign: 'center',
-    marginTop: Sizes.InnerFrame / 2,
-    fontWeight: '500',
-    fontSize: Sizes.SmallText,
-    color: Colors.Text
+    marginTop: Sizes.InnerFrame / 2
   }
 });

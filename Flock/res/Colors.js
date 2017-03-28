@@ -3,6 +3,7 @@
 let Background = '#EEEEEE';
 let Foreground = '#FFFFFF';
 let Black = '#000000';
+let Grey = '#F5F5F5';
 let DarkGrey = '#AAAAAA';
 let Text = Black;
 let Primary = '#1DCAFF';
@@ -14,13 +15,18 @@ export const Colors = {
   // backgrounds
   Background: Background,
   Foreground: Foreground,
-  MenuBackground: Primary,
+  SubduedForeground: Grey,
+  MenuBackground: Black,
   Transparent: Transparent,
+
+  // buttons
+  PositiveButton: Primary,
+  NegativeButton: Secondary,
 
   // text
   Text: Text,
   AlternateText: Foreground,
-  EmphasizedText: Primary,
+  EmphasizedText: Black,
   SubduedText: DarkGrey
 };
 
