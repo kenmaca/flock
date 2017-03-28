@@ -40,18 +40,18 @@ export default class Search extends Component {
 
   render() {
     return (
-      <Animatable.View
-        animation='slideInDown'
-        duration={300}
-        style={styles.container}>
-        <View style={styles.header}>
+      <View style={styles.container}>
+        <Animatable.View
+          animation='slideInDown'
+          duration={300}
+          style={styles.header}>
           <SearchBar
             noIcon
             autoFocus
             containerStyle={styles.searchContainer}
             inputStyle={styles.searchInput}
             placeholder='Search people' />
-        </View>
+        </Animatable.View>
         <ScrollView
           style={styles.scroll}>
           <HeaderText text='PREVIOUSLY FOLLOWED' />
@@ -67,7 +67,7 @@ export default class Search extends Component {
             renderItem={this.renderItem}
             style={styles.list} />
         </ScrollView>
-      </Animatable.View>
+      </View>
     );
   }
 }

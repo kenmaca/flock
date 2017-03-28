@@ -7,7 +7,7 @@ let Grey = '#F5F5F5';
 let DarkGrey = '#AAAAAA';
 let Text = Black;
 let Primary = '#1DCAFF';
-let Secondary = '#66C75C';
+let Secondary = '#4AD4FF';
 let Transparent = 'rgba(255, 255, 255, 0)';
 
 export const Colors = {

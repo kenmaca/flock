@@ -18,6 +18,7 @@ import * as Animatable from 'react-native-animatable';
 import Main from './views/Main';
 import Search from './views/Search';
 import Profile from './views/Profile';
+import Restaurant from './views/Restaurant';
 import Web from './views/Web';
 
 export default class Index extends Component {
@@ -49,6 +50,10 @@ export default class Index extends Component {
                 component={Profile}
                 direction='left' />
               <Scene
+                key='restaurant'
+                component={Restaurant}
+                direction='vertical' />
+              <Scene
                 key='web'
                 component={Web} />
           </Scene>
@@ -66,7 +71,6 @@ const styles = StyleSheet.create({
 
   // header
   header: {
-    zIndex: 99,
     alignItems: 'center',
     alignSelf: 'stretch',
     backgroundColor: Colors.MenuBackground,
