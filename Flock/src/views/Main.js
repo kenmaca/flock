@@ -43,6 +43,7 @@ export default class Main extends Component {
               renderItem={this.renderUserItem}
               style={styles.userList} />
           </ScrollView>
+          <HeaderText text='RESTAURANTS FREQUENTED' />
           <RestaurantList />
         </ScrollView>
       </View>

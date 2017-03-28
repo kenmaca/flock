@@ -17,6 +17,7 @@ import * as Animatable from 'react-native-animatable';
 // views
 import Main from './views/Main';
 import Search from './views/Search';
+import Profile from './views/Profile';
 import Web from './views/Web';
 
 export default class Index extends Component {
@@ -44,6 +45,10 @@ export default class Index extends Component {
                 component={Search}
                 animation='fade' />
               <Scene
+                key='profile'
+                component={Profile}
+                direction='left' />
+              <Scene
                 key='web'
                 component={Web} />
           </Scene>
@@ -61,6 +66,7 @@ const styles = StyleSheet.create({
 
   // header
   header: {
+    zIndex: 99,
     alignItems: 'center',
     alignSelf: 'stretch',
     backgroundColor: Colors.MenuBackground,

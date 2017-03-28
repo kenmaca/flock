@@ -30,8 +30,9 @@ export default class RestaurantList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <HeaderText text='RESTAURANTS FREQUENTED' />
         <FlatList
+          onStartShouldSetResponder={evt => false}
+          onMoveShouldSetResponder={evt => false}
           keyExtractor={(item, index) => `resto-${index}`}
           data={[1, 2, 3]}
           renderItem={this.renderRestaurantItem}

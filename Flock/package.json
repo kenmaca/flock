@@ -11,7 +11,10 @@
 		"react-native": "facebook/react-native#0.43-stable",
 		"react-native-animatable": "^1.1.1",
 		"react-native-elements": "^0.10.2",
+		"react-native-parallax-view": "^2.0.6",
 		"react-native-router-flux": "^3.38.0",
+		"react-native-segmented-control-tab": "^2.0.1",
+		"react-native-tab-view": "^0.0.58",
 		"react-native-vector-icons": "^4.0.0"
 	},
 	"devDependencies": {

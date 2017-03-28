@@ -24,11 +24,12 @@ export default class FollowUserCard extends Component {
         <Card
           containerStyle={styles.container}>
           <Icon
-            name='group-add'
+            name='twitter'
+            type='entypo'
             color={Colors.AlternateText}
-            size={50} />
+            size={45} />
           <Text style={styles.title}>
-            FOLLOW
+            ADD NEW
           </Text>
         </Card>
       </TouchableOpacity>
