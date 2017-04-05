@@ -10,91 +10,142 @@ import {
 
 // components
 import {
-  Button, ButtonGroup
+  Button, Icon
 } from 'react-native-elements';
 import Avatar from '../components/users/Avatar';
-import UserCard from '../components/users/UserCard';
-import RestaurantList from '../components/restaurants/RestaurantList';
+import ContentCoverSlider from '../components/common/ContentCoverSlider';
+import UppercasedText from '../components/common/UppercasedText';
 
 // animations
 import * as Animatable from 'react-native-animatable';
 const AnimatedAvatar = Animatable.createAnimatableComponent(Avatar);
 
 export default class Profile extends Component {
+  componentDidMount() {
+
+    // start on center page
+    this.refs.pages.scrollTo({
+      x: Sizes.Width, y: 0, animated: true
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <View style={styles.profile}>
-            <AnimatedAvatar
-              animation='bounceIn'
-              delay={300}
-              duration={500}
-              size={50} />
-            <View style={styles.bio}>
-              <Text style={styles.title}>
-                Alexandra Lee
-              </Text>
-              <Text style={[Styles.Text, Styles.Emphasized, styles.username]}>
-                @lexigirl
-              </Text>
+        <ContentCoverSlider title='Alexandra Lee'>
+          <ScrollView
+            horizontal
+            pagingEnabled
+            ref='pages'
+            showsHorizontalScrollIndicator={false}
+            style={styles.horizontalScroll}>
+            <View style={[styles.page, styles.frequented]}>
+              <View style={[
+                  Styles.Card, styles.card, styles.header
+                ]}>
+              </View>
             </View>
-            <Button
-              title='ADD TO FLOCK'
-              fontSize={Sizes.SmallText}
-              backgroundColor={Colors.PositiveButton}
-              buttonStyle={styles.follow}
-              icon={{
-                name: 'users',
-                type: 'entypo',
-                size: Sizes.SmallText
-              }} />
-          </View>
-          <View style={styles.trophyCase}>
-            <Button
-              title='23 Influenced'
-              fontSize={Sizes.SmallText}
-              backgroundColor={Colors.Transparent}
-              buttonStyle={styles.follow}
-              icon={{
-                name: 'twitter',
-                type: 'entypo',
-                size: Sizes.SmallText,
-                color: Colors.PositiveButton
-              }} />
-              <Button
-                title='38 In Flock'
-                fontSize={Sizes.SmallText}
-                backgroundColor={Colors.Transparent}
-                buttonStyle={styles.follow}
-                icon={{
-                  name: 'users',
-                  type: 'entypo',
-                  size: Sizes.SmallText,
-                  color: Colors.PositiveButton
-                }} />
-              <Button
-                title='129 Restaurants'
-                fontSize={Sizes.SmallText}
-                backgroundColor={Colors.Transparent}
-                buttonStyle={styles.follow}
-                icon={{
-                  name: 'shop',
-                  type: 'entypo',
-                  size: Sizes.SmallText,
-                  color: Colors.PositiveButton
-                }} />
-          </View>
+            <View style={[styles.page, styles.timeline]}>
+              <View style={[
+                  Styles.Card, styles.card, styles.header
+                ]}>
+                <Avatar size={100} />
+                <View style={styles.info}>
+                  <UppercasedText style={[
+                      Styles.Text, Styles.Emphasized, Styles.Title
+                    ]}>
+                    Alexandra Lee
+                  </UppercasedText>
+                  <Text style={[Styles.Text, Styles.Subtitle, Styles.BottomSpacing]}>
+                    @lexigirl
+                  </Text>
+                  <Button
+                    title='Add to my Flock'
+                    fontSize={Sizes.Text}
+                    backgroundColor={Colors.PositiveButton}
+                    buttonStyle={styles.addFlockButton}
+                    icon={{
+                      name: 'group-add',
+                      size: Sizes.Text
+                    }} />
+                </View>
+              </View>
+              <View style={styles.stats}>
+                <View style={styles.trophyCase}>
+                  <Button
+                    title='23 Influenced'
+                    fontSize={Sizes.SmallText}
+                    backgroundColor={Colors.Transparent}
+                    color={Colors.SubduedText}
+                    buttonStyle={styles.follow}
+                    icon={{
+                      name: 'twitter',
+                      type: 'entypo',
+                      size: Sizes.SmallText,
+                      color: Colors.SubduedText
+                    }} />
+                    <Button
+                      title='38 In Flock'
+                      fontSize={Sizes.SmallText}
+                      backgroundColor={Colors.Transparent}
+                      color={Colors.SubduedText}
+                      buttonStyle={styles.follow}
+                      icon={{
+                        name: 'users',
+                        type: 'entypo',
+                        size: Sizes.SmallText,
+                        color: Colors.SubduedText
+                      }} />
+                    <Button
+                      title='129 Restaurants'
+                      fontSize={Sizes.SmallText}
+                      backgroundColor={Colors.Transparent}
+                      color={Colors.SubduedText}
+                      buttonStyle={styles.follow}
+                      icon={{
+                        name: 'shop',
+                        type: 'entypo',
+                        size: Sizes.SmallText,
+                        color: Colors.SubduedText
+                      }} />
+                </View>
+              </View>
+              <View style={[
+                  Styles.Card, styles.card
+                ]}>
+              </View>
+            </View>
+            <View style={[styles.page, styles.frequented]}>
+              <View style={[
+                  Styles.Card, styles.card, styles.header
+                ]}>
+              </View>
+            </View>
+          </ScrollView>
+        </ContentCoverSlider>
+        <View style={styles.footer}>
+          <Icon
+            name='favorite-border'
+            color={Colors.AlternateText}
+            underlayColor={Colors.Transparent}
+            onPress={() => this.refs.pages.scrollTo({
+              x: 0, y: 0, animated: true
+            })} />
+          <Icon
+            name='face'
+            color={Colors.AlternateText}
+            underlayColor={Colors.Transparent}
+            onPress={() => this.refs.pages.scrollTo({
+              x: Sizes.Width, y: 0, animated: true
+            })} />
+          <Icon
+            name='timeline'
+            color={Colors.AlternateText}
+            underlayColor={Colors.Transparent}
+            onPress={() => this.refs.pages.scrollTo({
+              x: Sizes.Width * 2, y: 0, animated: true
+            })} />
         </View>
-        <ScrollView>
-          <ButtonGroup
-            selectedIndex={1}
-            onPress={() => {}}
-            buttons={['Frequented', 'Possibly Interested']}
-            textStyle={Styles.Text}
-            containerStyle={styles.buttons} />
-          <RestaurantList />
-        </ScrollView>
       </View>
     );
   }
@@ -103,36 +154,50 @@ export default class Profile extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     backgroundColor: Colors.Background
   },
 
-  header: {
-    alignSelf: 'stretch',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-end',
-    padding: Sizes.InnerFrame,
-    backgroundColor: Colors.MenuBackground
-  },
-
-  profile: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-
-  bio: {
+  horizontalScroll: {
     flex: 1,
+    height: Sizes.Height
+  },
+
+  page: {
+    width: Sizes.Width
+  },
+
+  card: {
+    margin: Sizes.InnerFrame,
+    marginTop: 0
+  },
+
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 125
+  },
+
+  info: {
+    flex: 2,
     marginLeft: Sizes.InnerFrame
   },
 
-  title: {
-    fontWeight: '200',
-    fontSize: Sizes.H1,
-    color: Colors.AlternateText
+  addFlockButton: {
+    marginLeft: 0,
+    alignSelf: 'flex-start'
   },
 
-  username: {
-    color: Colors.AlternateText
+  stats: {
+    margin: Sizes.OuterFrame,
+    marginTop: 0,
+    marginBottom: Sizes.InnerFrame,
+    backgroundColor: Colors.Transparent
+  },
+
+  trophyCase: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
 
   follow: {
@@ -141,18 +206,13 @@ const styles = StyleSheet.create({
     padding: Sizes.InnerFrame / 2
   },
 
-  trophyCase: {
-    marginTop: Sizes.InnerFrame,
-    alignSelf: 'stretch',
+  footer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
-  },
-
-  buttons: {
-    marginTop: Sizes.InnerFrame,
-    marginLeft: Sizes.InnerFrame,
-    marginRight: Sizes.InnerFrame,
-    height: 25
+    padding: Sizes.InnerFrame,
+    paddingLeft: Sizes.OuterFrame * 2,
+    paddingRight: Sizes.OuterFrame * 2,
+    justifyContent: 'space-between',
+    backgroundColor: Colors.PositiveButton
   }
 });

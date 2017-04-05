@@ -5,6 +5,7 @@ let Foreground = '#FFFFFF';
 let Black = '#000000';
 let Grey = '#F5F5F5';
 let DarkGrey = '#AAAAAA';
+let NearBlack = '#111111';
 let Text = Black;
 let Primary = '#1DCAFF';
 let Secondary = '#4AD4FF';
