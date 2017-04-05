@@ -19,7 +19,7 @@ export default class AvatarGroup extends Component {
           (this.props.users || []).map((user, i) => (
             <Avatar
               style={styles.avatar}
-              size={28}
+              size={this.props.size || 28}
               outline
               key={i} />
           ))

@@ -13,6 +13,7 @@ import {
 
 // components
 import * as Animatable from 'react-native-animatable';
+import Header from '../components/common/Header';
 import HeaderText from '../components/common/HeaderText';
 import RestaurantList from '../components/restaurants/RestaurantList';
 import UserCard from '../components/users/UserCard';
@@ -29,32 +30,28 @@ export default class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Animatable.Text
-            animation='fadeIn'
-            style={styles.title}>
-            FLOCK
-          </Animatable.Text>
-        </View>
+        <Header />
         <ScrollView>
-          <View style={styles.section}>
-            <HeaderText text='IN YOUR FLOCK' />
-            <ScrollView
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.userScroll}
-              horizontal>
-              <FollowUserCard
-                key='user-search' />
-              <FlatList
-                horizontal
-                keyExtractor={(item, index) => `user-${index}`}
-                data={[1, 2, 3, 4, 5, 6, 7, 8]}
-                renderItem={this.renderUserItem}
-                style={styles.userList} />
-            </ScrollView>
+          <View style={[
+              styles.section
+            ]}>
+            <HeaderText text='In your flock' />
           </View>
+          <ScrollView
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.userScroll}
+            horizontal>
+            <FollowUserCard
+              key='user-search' />
+            <FlatList
+              horizontal
+              keyExtractor={(item, index) => `user-${index}`}
+              data={[1, 2, 3, 4, 5, 6, 7, 8]}
+              renderItem={this.renderUserItem}
+              style={styles.userList} />
+          </ScrollView>
           <View style={styles.section}>
-            <HeaderText text='RESTAURANTS FREQUENTED' />
+            <HeaderText text='Restaurants Frequented' />
             <RestaurantList />
           </View>
         </ScrollView>
@@ -70,29 +67,18 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.Background
   },
 
-  // header
-  header: {
-    alignItems: 'center',
-    alignSelf: 'stretch',
-    backgroundColor: Colors.MenuBackground,
-    padding: Sizes.InnerFrame,
-    paddingTop: Sizes.OuterFrame * 2,
-  },
-
-  title: {
-    color: Colors.AlternateText,
-    fontSize: Sizes.H2,
-    letterSpacing: 5,
-    fontWeight: '200'
-  },
-
   // list
   section: {
     margin: Sizes.InnerFrame
   },
 
+  flock: {
+    marginLeft: 0,
+    marginRight: 0
+  },
+
   userScroll: {
-    marginTop: Sizes.InnerFrame,
+    paddingLeft: Sizes.InnerFrame,
     paddingRight: Sizes.InnerFrame
   },
 

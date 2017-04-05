@@ -12,6 +12,7 @@ import {
 } from 'react-native-router-flux';
 
 // components
+import Header from '../components/common/Header';
 import HeaderText from '../components/common/HeaderText';
 import * as Animatable from 'react-native-animatable';
 import {
@@ -41,6 +42,7 @@ export default class Search extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header />
         <Animatable.View
           animation='slideInDown'
           duration={300}
@@ -54,13 +56,17 @@ export default class Search extends Component {
         </Animatable.View>
         <ScrollView
           style={styles.scroll}>
-          <HeaderText text='PREVIOUSLY FOLLOWED' />
+          <View style={styles.section}>
+            <HeaderText text='Previously followed' />
+          </View>
           <FlatList
             keyExtractor={(item, index) => index}
             data={[1, 2, 3, 4]}
             renderItem={this.renderItem}
             style={styles.list} />
-          <HeaderText text='POPULAR' />
+          <View style={styles.section}>
+            <HeaderText text='Popular' />
+          </View>
           <FlatList
             keyExtractor={(item, index) => index}
             data={[1, 2, 3, 4]}
@@ -99,6 +105,12 @@ const styles = StyleSheet.create({
   scroll: {
     flex: 1,
     alignSelf: 'stretch'
+  },
+
+  // list
+  section: {
+    margin: Sizes.InnerFrame,
+    marginBottom: 0
   },
 
   list: {
