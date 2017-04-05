@@ -2,15 +2,55 @@ import Colors from './Colors';
 import Sizes from './Sizes';
 
 export const Styles = {
+
+  // text
   Text: {
     fontWeight: '100',
-    fontSize: Sizes.SmallText,
+    fontSize: Sizes.Text,
     color: Colors.Text
   },
 
   Emphasized: {
     fontWeight: '500',
     color: Colors.EmphasizedText
+  },
+
+  Title: {
+    fontFamily: 'Avenir',
+    fontSize: Sizes.H3
+  },
+
+  Subtitle: {
+    fontFamily: 'IowanOldStyle-Italic',
+    color: Colors.SubduedText
+  },
+
+  SmallText: {
+    fontSize: Sizes.SmallText
+  },
+
+  Alternate: {
+    backgroundColor: Colors.Transparent,
+    color: Colors.AlternateText
+  },
+
+  // containers
+  Card: {
+    backgroundColor: Colors.Foreground,
+    padding: Sizes.OuterFrame
+  },
+
+  BottomSpacing: {
+    marginBottom: Sizes.Divider
+  },
+
+  BottomHalfSpacing: {
+    marginBottom: Sizes.Divider / 2
+  },
+
+  EqualColumns: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 };
 

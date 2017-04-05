@@ -11,19 +11,9 @@ import {
 export default class HeaderText extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={[styles.header, Styles.Text, Styles.Emphasized]}>
-          {this.props.text}
-        </Text>
-      </View>
+      <Text style={[Styles.Text, Styles.Emphasized, Styles.SmallText]}>
+        {this.props.text.toUpperCase()}
+      </Text>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    margin: Sizes.InnerFrame,
-    marginTop: Sizes.OuterFrame,
-    marginBottom: 0
-  }
-});

@@ -31,20 +31,15 @@ export default class RestaurantCard extends Component {
             }}>
             <View style={styles.header}>
               <View style={styles.headerInfo}>
-                <Text style={[Styles.Text, Styles.Emphasized]}>
+                <Text style={[Styles.Text, Styles.Emphasized, Styles.Title]}>
                   BORALIA
                 </Text>
-                <Text style={styles.genres}>
+                <Text style={[Styles.Subtitle, styles.subtitle]}>
                   Canadian, Heritage, and Cute
                 </Text>
               </View>
               <AvatarGroup
                 users={[1, 2, 3]} />
-            </View>
-            <View style={styles.content}>
-              <Text style={Styles.Text}>
-                Boralia celebrates the historic origins of Canadian cuisine. Our menu draws inspiration from traditional Aboriginal dishes, as well as the recipes of early settlers and immigrants of the 18th and 19th centuries.
-              </Text>
             </View>
           </Card>
         </TouchableOpacity>
@@ -69,17 +64,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: Sizes.InnerFrame
+    padding: Sizes.InnerFrame
   },
 
   headerInfo: {
     flex: 1
-  },
-
-  genres: {
-    fontWeight: '100',
-    fontSize: Sizes.SmallText,
-    fontStyle: 'italic',
-    color: Colors.SubduedText
   }
 });

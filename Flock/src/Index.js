@@ -11,9 +11,6 @@ import {
   Colors, Sizes
 } from './Const';
 
-// components
-import * as Animatable from 'react-native-animatable';
-
 // views
 import Main from './views/Main';
 import Search from './views/Search';
@@ -25,13 +22,6 @@ export default class Index extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Animatable.Text
-            animation='fadeIn'
-            style={styles.title}>
-            FLOCK
-          </Animatable.Text>
-        </View>
         <Router>
           <Scene
             hideNavBar
@@ -52,7 +42,7 @@ export default class Index extends Component {
               <Scene
                 key='restaurant'
                 component={Restaurant}
-                direction='vertical' />
+                direction='fade' />
               <Scene
                 key='web'
                 component={Web} />
@@ -66,7 +56,7 @@ export default class Index extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.Background
+    backgroundColor: Colors.MenuBackground
   },
 
   // header

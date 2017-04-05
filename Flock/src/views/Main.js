@@ -12,6 +12,7 @@ import {
 } from 'react-native-router-flux';
 
 // components
+import * as Animatable from 'react-native-animatable';
 import HeaderText from '../components/common/HeaderText';
 import RestaurantList from '../components/restaurants/RestaurantList';
 import UserCard from '../components/users/UserCard';
@@ -28,6 +29,13 @@ export default class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.header}>
+          <Animatable.Text
+            animation='fadeIn'
+            style={styles.title}>
+            FLOCK
+          </Animatable.Text>
+        </View>
         <ScrollView>
           <HeaderText text='IN YOUR FLOCK' />
           <ScrollView

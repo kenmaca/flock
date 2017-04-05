@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react';
 import {
-  StyleSheet, View, Text, TouchableOpacity
+  StyleSheet, View, Text, TouchableOpacity, Image
 } from 'react-native';
 import {
   Sizes, Colors
@@ -15,6 +15,7 @@ import {
 import {
   Card, Icon
 } from 'react-native-elements';
+import Logo from '../common/Logo';
 
 export default class FollowUserCard extends Component {
   render() {
@@ -23,11 +24,7 @@ export default class FollowUserCard extends Component {
         onPress={Actions.search}>
         <Card
           containerStyle={styles.container}>
-          <Icon
-            name='twitter'
-            type='entypo'
-            color={Colors.AlternateText}
-            size={45} />
+          <Logo />
           <Text style={styles.title}>
             ADD NEW
           </Text>

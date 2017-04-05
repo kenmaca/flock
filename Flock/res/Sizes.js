@@ -11,9 +11,9 @@ export const Sizes = {
   // text
   H1: 24,
   H2: 21,
-  H3: 14,
+  H3: 18,
   Text: 12,
-  SmallText: 10,
+  SmallText: 8,
 
   // weights
   Bold: '600',
@@ -22,6 +22,9 @@ export const Sizes = {
   // padding
   OuterFrame: 25,
   InnerFrame: 15,
+
+  // divider
+  Divider: 15,
 
   // decor
   RoundedBorders: 5
