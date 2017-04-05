@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react';
 import {
-  View, StyleSheet, Text
+  View, StyleSheet, StatusBar
 } from 'react-native';
 import {
   Router, Scene, Actions
@@ -22,6 +22,9 @@ export default class Index extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar
+          backgroundColor={Colors.MenuBackground}
+          barStyle='light-content' />
         <Router>
           <Scene
             hideNavBar
