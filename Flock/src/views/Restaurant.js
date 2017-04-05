@@ -46,7 +46,10 @@ export default class Restaurant extends Component {
         <View
           horizontal
           style={[Styles.Card, styles.card, styles.photos]}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.photoScroll}>
             <Image
               style={styles.photo}
               source={{
@@ -185,6 +188,10 @@ const styles = StyleSheet.create({
   photos: {
     paddingLeft: 0,
     paddingRight: 0
+  },
+
+  photoScroll: {
+    paddingRight: Sizes.InnerFrame
   },
 
   photo: {

@@ -47,12 +47,23 @@ export default class Search extends Component {
           animation='slideInDown'
           duration={300}
           style={styles.header}>
-          <SearchBar
-            noIcon
-            autoFocus
-            containerStyle={styles.searchContainer}
-            inputStyle={styles.searchInput}
-            placeholder='Search people' />
+          <View style={styles.search}>
+            <SearchBar
+              noIcon
+              autoFocus
+              containerStyle={styles.searchContainer}
+              inputStyle={styles.searchInput}
+              placeholder='Search people' />
+          </View>
+          <TouchableOpacity
+            onPress={Actions.pop}
+            style={styles.cancelContainer}>
+            <Text style={[
+                Styles.Text, Styles.Center, Styles.Alternate
+              ]}>
+              Cancel
+            </Text>
+          </TouchableOpacity>
         </Animatable.View>
         <ScrollView
           style={styles.scroll}>
@@ -86,13 +97,21 @@ const styles = StyleSheet.create({
   },
 
   header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     alignSelf: 'stretch',
     padding: Sizes.InnerFrame,
     backgroundColor: Colors.MenuBackground
   },
 
   searchContainer: {
+    alignSelf: 'stretch',
     backgroundColor: Colors.Transparent
+  },
+
+  search: {
+    flex: 1
   },
 
   searchInput: {
@@ -100,6 +119,11 @@ const styles = StyleSheet.create({
     color: Colors.Text,
     fontWeight: '100',
     fontSize: Sizes.Text,
+  },
+
+  cancelContainer: {
+    paddingLeft: Sizes.InnerFrame / 2,
+    paddingRight: Sizes.InnerFrame / 2
   },
 
   scroll: {
