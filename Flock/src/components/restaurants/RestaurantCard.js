@@ -21,7 +21,12 @@ import Question from '../comments/Question';
 export default class RestaurantCard extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[
+          styles.container,
+          this.props.spacing && {
+            marginTop: this.props.spacing
+          }
+        ]}>
         <TouchableOpacity
           onPress={Actions.restaurant}>
           <Card
@@ -43,8 +48,6 @@ export default class RestaurantCard extends Component {
             </View>
           </Card>
         </TouchableOpacity>
-        <Question />
-        <Question />
       </View>
     );
   }
@@ -56,6 +59,7 @@ const styles = StyleSheet.create({
   card: {
     borderWidth: 0,
     padding: 0,
+    margin: 0,
     shadowColor: Colors.Transparent,
     backgroundColor: Colors.Foreground
   },

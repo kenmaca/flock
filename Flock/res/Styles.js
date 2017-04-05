@@ -34,10 +34,18 @@ export const Styles = {
     color: Colors.AlternateText
   },
 
+  Center: {
+    textAlign: 'center'
+  },
+
   // containers
   Card: {
     backgroundColor: Colors.Foreground,
     padding: Sizes.OuterFrame
+  },
+
+  TopSpacing: {
+    marginTop: Sizes.Divider
   },
 
   BottomSpacing: {

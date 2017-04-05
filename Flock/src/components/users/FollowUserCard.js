@@ -5,7 +5,7 @@ import {
   StyleSheet, View, Text, TouchableOpacity, Image
 } from 'react-native';
 import {
-  Sizes, Colors
+  Sizes, Colors, Styles
 } from '../../Const';
 import {
   Actions
@@ -25,7 +25,10 @@ export default class FollowUserCard extends Component {
         <Card
           containerStyle={styles.container}>
           <Logo />
-          <Text style={styles.title}>
+          <Text style={[
+              Styles.Text, Styles.SmallText, Styles.Emphasized,
+              Styles.Alternate, Styles.Center, Styles.TopSpacing
+            ]}>
             ADD NEW
           </Text>
         </Card>
@@ -36,11 +39,13 @@ export default class FollowUserCard extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    height: 100,
+    width: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
     borderWidth: 0,
-    padding: Sizes.InnerFrame / 2,
-    paddingLeft: Sizes.InnerFrame,
-    paddingRight: Sizes.InnerFrame,
-    marginRight: 0,
+    margin: 0,
+    padding: 0,
     shadowColor: Colors.Transparent,
     backgroundColor: Colors.PositiveButton
   },

@@ -37,22 +37,26 @@ export default class Main extends Component {
           </Animatable.Text>
         </View>
         <ScrollView>
-          <HeaderText text='IN YOUR FLOCK' />
-          <ScrollView
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.userScroll}
-            horizontal>
-            <FollowUserCard
-              key='user-search' />
-            <FlatList
-              horizontal
-              keyExtractor={(item, index) => `user-${index}`}
-              data={[1, 2, 3, 4, 5, 6, 7, 8]}
-              renderItem={this.renderUserItem}
-              style={styles.userList} />
-          </ScrollView>
-          <HeaderText text='RESTAURANTS FREQUENTED' />
-          <RestaurantList />
+          <View style={styles.section}>
+            <HeaderText text='IN YOUR FLOCK' />
+            <ScrollView
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.userScroll}
+              horizontal>
+              <FollowUserCard
+                key='user-search' />
+              <FlatList
+                horizontal
+                keyExtractor={(item, index) => `user-${index}`}
+                data={[1, 2, 3, 4, 5, 6, 7, 8]}
+                renderItem={this.renderUserItem}
+                style={styles.userList} />
+            </ScrollView>
+          </View>
+          <View style={styles.section}>
+            <HeaderText text='RESTAURANTS FREQUENTED' />
+            <RestaurantList />
+          </View>
         </ScrollView>
       </View>
     );
@@ -83,7 +87,12 @@ const styles = StyleSheet.create({
   },
 
   // list
+  section: {
+    margin: Sizes.InnerFrame
+  },
+
   userScroll: {
+    marginTop: Sizes.InnerFrame,
     paddingRight: Sizes.InnerFrame
   },
 

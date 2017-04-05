@@ -8,12 +8,15 @@ import {
   Sizes, Colors, Styles
 } from '../../Const';
 
+// components
+import UppercasedText from './UppercasedText';
+
 export default class HeaderText extends Component {
   render() {
     return (
-      <Text style={[Styles.Text, Styles.Emphasized, Styles.SmallText]}>
-        {this.props.text.toUpperCase()}
-      </Text>
+      <UppercasedText style={[Styles.Text, Styles.Emphasized, Styles.SmallText]}>
+        {this.props.text}
+      </UppercasedText>
     );
   }
 }

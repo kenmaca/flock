@@ -22,9 +22,8 @@ export default class UserCard extends Component {
         <Avatar size={50} />
         <Text
           style={[
-            styles.title,
-            Styles.Text,
-            Styles.Emphasized
+            Styles.Text, Styles.Center, Styles.SmallText,
+            Styles.Emphasized, Styles.TopSpacing
           ]}>
           @lexygirl
         </Text>
@@ -35,14 +34,14 @@ export default class UserCard extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    height: 100,
+    width: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
     borderWidth: 0,
-    padding: Sizes.InnerFrame / 2,
-    marginRight: 0,
-    shadowColor: Colors.Transparent
-  },
-
-  title: {
-    textAlign: 'center',
-    marginTop: Sizes.InnerFrame / 2
+    margin: 0,
+    padding: 0,
+    shadowColor: Colors.Transparent,
+    marginLeft: Sizes.InnerFrame / 2
   }
 });

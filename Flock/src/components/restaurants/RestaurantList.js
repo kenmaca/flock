@@ -23,6 +23,7 @@ export default class RestaurantList extends Component {
   renderRestaurantItem({item, index}) {
     return (
       <RestaurantCard
+        spacing={Sizes.InnerFrame}
         key={item} />
     );
   }
