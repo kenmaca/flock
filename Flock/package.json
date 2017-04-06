@@ -7,6 +7,8 @@
 		"test": "jest"
 	},
 	"dependencies": {
+		"firebase": "^3.7.5",
+		"geofire": "^4.1.2",
 		"react": "16.0.0-alpha.3",
 		"react-native": "facebook/react-native#0.43-stable",
 		"react-native-animatable": "^1.1.1",

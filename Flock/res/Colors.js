@@ -6,6 +6,7 @@ let Black = '#000000';
 let Grey = '#F5F5F5';
 let DarkGrey = '#AAAAAA';
 let NearBlack = '#111111';
+let Red = '#FF0000';
 let Text = Black;
 let Primary = '#1DCAFF';
 let Secondary = '#4AD4FF';
@@ -22,7 +23,7 @@ export const Colors = {
 
   // buttons
   PositiveButton: Primary,
-  NegativeButton: Secondary,
+  NegativeButton: Red,
 
   // text
   Text: Text,

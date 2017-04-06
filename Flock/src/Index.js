@@ -12,6 +12,9 @@ import {
 } from './Const';
 
 // views
+import Loader from './views/Loader';
+import Login from './views/Login';
+import Register from './views/Register';
 import Main from './views/Main';
 import Search from './views/Search';
 import Profile from './views/Profile';
@@ -31,6 +34,17 @@ export default class Index extends Component {
             key='root'>
               <Scene
                 initial
+                key='loader'
+                component={Loader} />
+              <Scene
+                key='login'
+                component={Login}
+                animation='fade' />
+              <Scene
+                key='register'
+                component={Register}
+                animation='fade' />
+              <Scene
                 key='main'
                 component={Main}
                 type='replace' />
@@ -41,7 +55,7 @@ export default class Index extends Component {
               <Scene
                 key='profile'
                 component={Profile}
-                direction='left' />
+                direction='fade' />
               <Scene
                 key='restaurant'
                 component={Restaurant}

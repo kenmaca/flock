@@ -5,6 +5,7 @@ export const Styles = {
 
   // text
   Text: {
+    backgroundColor: Colors.Transparent,
     fontWeight: '100',
     fontSize: Sizes.Text,
     color: Colors.Text

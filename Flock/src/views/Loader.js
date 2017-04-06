@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react';
 import {
-  View, StyleSheet, Alert, Image
+  View, StyleSheet, Alert
 } from 'react-native';
 import {
   Actions
@@ -10,12 +10,11 @@ import {
 import {
   Colors, Strings
 } from '../Const';
+import Firebase from '../utils/Firebase';
 
 // components
+import Logo from '../components/common/Logo';
 import * as Animatable from 'react-native-animatable';
-
-// const
-let AnimatedImage = Animatable.createAnimatableComponent(Image);
 
 /**
  * Handles logging in and redirection to an appropriate View
@@ -40,31 +39,35 @@ export default class Loader extends Component {
         // register anonymously or resume
         this.authListener = Firebase.auth().onAuthStateChanged(user => {
           if (user) {
-            Actions.main();
+
+            // logged in, but check if user profile was created
+            this._usChR = Firebase.database().ref(`users/${user.uid}`);
+            this._usChL = this._usChR.on(
+              'value',
+              snap => snap.exists() ? Actions.main(): Actions.register()
+            );
           } else {
 
-            // TODO: move this to post-onboarding screens
-            Firebase.auth().signInAnonymously().catch(
-              error => Alert.alert(
-                `Service temporarily unavailable (${error.code})`,
-                error.message
-              )
-            );
+            // not registered
+            Actions.login();
           }
         });
       }
     });
   }
 
+  componentWillUnmount() {
+    this._usChR && this._usChR.off('value', this._usChL);
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <AnimatedImage
-          ref='logo'
-          animation='bounce'
-          iterationCount='infinite'
-          source={require('../../res/media/logo.png')}
-          style={styles.logo} />
+        <Animatable.View
+          animation='pulse'
+          iterationCount='infinite'>
+          <Logo size={60} />
+        </Animatable.View>
       </View>
     );
   }
@@ -75,11 +78,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Colors.Primary
-  },
-
-  logo: {
-    width: 30,
-    height: 30
+    backgroundColor: Colors.MenuBackground
   }
 });
