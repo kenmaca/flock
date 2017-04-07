@@ -37,6 +37,8 @@
 		8F29C605AAA94D1890C99EC8 /* libRNBackgroundFetch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 624E837737844E49A17B8B87 /* libRNBackgroundFetch.a */; };
 		DE4A8B3611F741E7A7C81E66 /* libCocoaLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 213D8A8A77C244AEB855B915 /* libCocoaLumberjack.a */; };
 		18B7F17E0E3B4010A6E5C11E /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B9151186C674822894815B0 /* libRCTFBSDK.a */; };
+		80ECC25BC39D4596B67043BB /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FF3C5711F44274B20191D5 /* libRNFetchBlob.a */; };
+		37FE460BB0164D64AFD7C9E7 /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D099C9DCC4E14683B2D2DA71 /* libRCTCamera.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -267,6 +269,10 @@
 		213D8A8A77C244AEB855B915 /* libCocoaLumberjack.a */ = {isa = PBXFileReference; name = "libCocoaLumberjack.a"; path = "libCocoaLumberjack.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		21C6BDA7670041BCB5C47E7B /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; name = "RCTFBSDK.xcodeproj"; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		9B9151186C674822894815B0 /* libRCTFBSDK.a */ = {isa = PBXFileReference; name = "libRCTFBSDK.a"; path = "libRCTFBSDK.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		2C228CD9BC514662A5EBF609 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; name = "RNFetchBlob.xcodeproj"; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		E8FF3C5711F44274B20191D5 /* libRNFetchBlob.a */ = {isa = PBXFileReference; name = "libRNFetchBlob.a"; path = "libRNFetchBlob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		5D26B2ADCF5C47B0B2C6DA16 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; name = "RCTCamera.xcodeproj"; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		D099C9DCC4E14683B2D2DA71 /* libRCTCamera.a */ = {isa = PBXFileReference; name = "libRCTCamera.a"; path = "libRCTCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +297,8 @@
 				8F29C605AAA94D1890C99EC8 /* libRNBackgroundFetch.a in Frameworks */,
 				DE4A8B3611F741E7A7C81E66 /* libCocoaLumberjack.a in Frameworks */,
 				18B7F17E0E3B4010A6E5C11E /* libRCTFBSDK.a in Frameworks */,
+				80ECC25BC39D4596B67043BB /* libRNFetchBlob.a in Frameworks */,
+				37FE460BB0164D64AFD7C9E7 /* libRCTCamera.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +448,8 @@
 				57DE082171DF4684A256CADF /* RNBackgroundFetch.xcodeproj */,
 				AD117B34780C47FA929329FC /* Lumberjack.xcodeproj */,
 				21C6BDA7670041BCB5C47E7B /* RCTFBSDK.xcodeproj */,
+				2C228CD9BC514662A5EBF609 /* RNFetchBlob.xcodeproj */,
+				5D26B2ADCF5C47B0B2C6DA16 /* RCTCamera.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -875,6 +885,8 @@
 					"$(SRCROOT)/../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/**",
 					"$(SRCROOT)/../node_modules/cocoa-lumberjack/CocoaLumberjack/**",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
+					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 				);
 				INFOPLIST_FILE = Flock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -888,6 +900,8 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/Flock\"",
+					"\"$(SRCROOT)/Flock\"",
 					"\"$(SRCROOT)/Flock\"",
 					"\"$(SRCROOT)/Flock\"",
 					"\"$(SRCROOT)/Flock\"",
@@ -909,6 +923,8 @@
 					"$(SRCROOT)/../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/**",
 					"$(SRCROOT)/../node_modules/cocoa-lumberjack/CocoaLumberjack/**",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
+					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios",
 				);
 				INFOPLIST_FILE = Flock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -922,6 +938,8 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/Flock\"",
+					"\"$(SRCROOT)/Flock\"",
 					"\"$(SRCROOT)/Flock\"",
 					"\"$(SRCROOT)/Flock\"",
 					"\"$(SRCROOT)/Flock\"",
