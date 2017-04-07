@@ -3018,6 +3018,10 @@ react-native-background-geolocation@^2.7.0:
     cocoa-lumberjack "^3.0.3"
     react-native-background-fetch "~2.0.3"
 
+react-native-blur@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-blur/-/react-native-blur-2.0.0.tgz#284b3abfb42c2d90924aa15f494ccb88d6055342"
+
 react-native-camera@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-0.6.0.tgz#dd2760b7857d660761c78f2da575b494fdc8dcb5"
@@ -3051,11 +3055,19 @@ react-native-fetch-blob@^0.10.4:
     base-64 "0.1.0"
     glob "^7.0.6"
 
+react-native-geocoder@^0.4.6:
+  version "0.4.6"
+  resolved "https://registry.yarnpkg.com/react-native-geocoder/-/react-native-geocoder-0.4.6.tgz#ddbb55714bfe4e355b32358997f783576b65bace"
+
 react-native-parallax-view@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/react-native-parallax-view/-/react-native-parallax-view-2.0.6.tgz#7de78edb7a2a0aba6c01b99fce828d387cec3e93"
   dependencies:
     react-native-scrollable-mixin "^1.0.1"
+
+react-native-progress@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-progress/-/react-native-progress-3.2.0.tgz#86d756be5537c09936ac3d3c4e23710da590743c"
 
 react-native-router-flux@^3.38.0:
   version "3.38.0"
@@ -3098,9 +3110,9 @@ react-native-vector-icons@^4.0.0:
     lodash "^4.0.0"
     yargs "^6.3.0"
 
-react-native@facebook/react-native#0.43-stable:
-  version "0.43.0-rc.4"
-  resolved "https://codeload.github.com/facebook/react-native/tar.gz/bda953ea71b7304203d729afbb7e790738afcbde"
+react-native@0.43.2:
+  version "0.43.2"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.43.2.tgz#83cdb23d7a9cba207acbb52ad2f0b167df9b42b0"
   dependencies:
     absolute-path "^0.0.0"
     art "^0.10.0"
@@ -3212,9 +3224,9 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@16.0.0-alpha.3:
-  version "16.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.0.0-alpha.3.tgz#addfd7ae9d801fd20c6244142354ae0cb7b1fe00"
+react@16.0.0-alpha.6:
+  version "16.0.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.0.0-alpha.6.tgz#2ccb1afb4425ccc12f78a123a666f2e4c141adb9"
   dependencies:
     fbjs "^0.8.9"
     loose-envify "^1.1.0"
