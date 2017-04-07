@@ -54,16 +54,13 @@ export default class ContentCoverSlider extends Component {
               underlayColor={Colors.Transparent} />
           </View>
         </View>
-        <Image
+        <View
           style={[
             styles.cover,
             {
               opacity: (100 - this.state.y) / 100
             }
-          ]}
-          source={{
-            uri: 'https://s3-media1.fl.yelpcdn.com/bphoto/hnYrthLBd-vZ4GZLleOXcA/o.jpg'
-          }} />
+          ]} />
         <AnimatedScrollView
           scrollEventThrottle={16}
           onScroll={this.onScroll}
@@ -106,7 +103,8 @@ const styles = StyleSheet.create({
   },
 
   cover: {
-    height: 200
+    height: 200,
+    backgroundColor: Colors.MenuBackground
   },
 
   content: {
