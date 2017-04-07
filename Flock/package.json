@@ -12,6 +12,7 @@
 		"react": "16.0.0-alpha.3",
 		"react-native": "facebook/react-native#0.43-stable",
 		"react-native-animatable": "^1.1.1",
+		"react-native-background-geolocation": "^2.7.0",
 		"react-native-elements": "^0.10.2",
 		"react-native-parallax-view": "^2.0.6",
 		"react-native-router-flux": "^3.38.0",
