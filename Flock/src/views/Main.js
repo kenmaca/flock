@@ -10,6 +10,7 @@ import {
 import {
   Actions
 } from 'react-native-router-flux';
+import Tracker from '../utils/Tracker';
 
 // components
 import * as Animatable from 'react-native-animatable';
@@ -20,6 +21,14 @@ import UserCard from '../components/users/UserCard';
 import FollowUserCard from '../components/users/FollowUserCard';
 
 export default class Main extends Component {
+  componentDidMount() {
+    this.tracker = new Tracker();
+  }
+
+  componentWillUnmount() {
+    this.tracker.off();
+  }
+
   renderUserItem({item, index}) {
     return (
       <UserCard
