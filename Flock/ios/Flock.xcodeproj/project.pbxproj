@@ -1263,7 +1263,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.flock.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flock.debug;
 				PRODUCT_NAME = Flock;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1306,7 +1306,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.flock.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.flock.debug;
 				PRODUCT_NAME = Flock;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

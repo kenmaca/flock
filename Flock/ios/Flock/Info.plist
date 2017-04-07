@@ -2,16 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Microphone access is used to assist video capture</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Camera roll access is used to select restaurant and profile photos to upload</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Camera access is used to take new restaurant and profile photos</string>
-	<key>NSMotionUsageDescription</key>
-	<string>Accelerometer use improves battery life for location tracking</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Location tracking is used to determine when you visit a restaurant</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -30,8 +20,28 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1393866947341667</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>1393866947341667</string>
+	<key>FacebookDisplayName</key>
+	<string>Flock</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -45,8 +55,18 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera access is used to take new restaurant and profile photos</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location tracking is used to determine when you visit a restaurant</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Microphone access is used to assist video capture</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Accelerometer use improves battery life for location tracking</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Camera roll access is used to select restaurant and profile photos to upload</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>
@@ -80,25 +100,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb1393866947341667</string>
-			</array>
-		</dict>
-	</array>
-	<key>FacebookAppID</key>
-	<string>1393866947341667</string>
-	<key>FacebookDisplayName</key>
-	<string>Flock</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbapi</string>
-		<string>fb-messenger-api</string>
-		<string>fbauth2</string>
-		<string>fbshareextension</string>
-	</array>
 </dict>
 </plist>
