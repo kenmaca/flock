@@ -10,7 +10,8 @@ import {
 import {
   Actions
 } from 'react-native-router-flux';
-import Firebase from '../utils/Firebase';
+import * as Firebase from 'firebase';
+import Database from '../utils/Firebase';
 import {
   LoginManager,
   GraphRequest,
@@ -93,20 +94,29 @@ export default class Login extends Component {
       'email'
     ]).then(
       (result) => {
-        if (result.isCancelled) {
-          // do nothing
-        } else {
+        if (!result.isCancelled) {
           AccessToken.getCurrentAccessToken().then(
-            user => {
-              const infoRequest = new GraphRequest(
-                `/me?fields=id,name,picture,first_name,last_name,email`,
-                null,
-                this._responseInfoCallback,
-              )
-              // start the graph request
-              new GraphRequestManager().addRequest(infoRequest).start();
-            }
-          );
+            data => {
+              Firebase.auth().signInWithCredential(
+                Firebase.auth.FacebookAuthProvider.credential(
+                  data.accessToken.toString()
+                )
+              ).then(
+                user => {
+                  const infoRequest = new GraphRequest(
+                    `/me?fields=id,name,picture,first_name,last_name,email`,
+                    null,
+                    this._responseInfoCallback,
+                  )
+                  // start the graph request
+                  new GraphRequestManager().addRequest(infoRequest).start();
+                }
+              ).catch(error => console.log(error))
+            },
+
+          )
+        } else {
+          console.log('Log in Cancelled');
         }
       },
       (error) => {
@@ -119,9 +129,9 @@ export default class Login extends Component {
       if (error) {
         alert('Error fetching data: ' + error.toString());
       } else {
-        // TODO: save to Firebase
+        // TODO: save email, avatar or other user infos to Firebase
         console.log(result);
-        alert('Success fetching data: ' + result.toString());
+
       }
     }
 
