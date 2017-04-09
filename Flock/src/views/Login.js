@@ -11,6 +11,12 @@ import {
   Actions
 } from 'react-native-router-flux';
 import Firebase from '../utils/Firebase';
+import {
+  LoginManager,
+  GraphRequest,
+  GraphRequestManager,
+  AccessToken
+} from 'react-native-fbsdk';
 
 // components
 import ContentCoverSlider from '../components/common/ContentCoverSlider';
@@ -28,6 +34,7 @@ export default class Login extends Component {
 
     // bindings
     this.loginWithEmail = this.loginWithEmail.bind(this);
+    this.loginWithFacebook = this.loginWithFacebook.bind(this);
   }
 
   // returns
@@ -79,6 +86,45 @@ export default class Login extends Component {
     });
   }
 
+  loginWithFacebook() {
+    // user grants endpoints permissions
+    LoginManager.logInWithReadPermissions([
+      'public_profile',
+      'email'
+    ]).then(
+      (result) => {
+        if (result.isCancelled) {
+          // do nothing
+        } else {
+          AccessToken.getCurrentAccessToken().then(
+            user => {
+              const infoRequest = new GraphRequest(
+                `/me?fields=id,name,picture,first_name,last_name,email`,
+                null,
+                this._responseInfoCallback,
+              )
+              // start the graph request
+              new GraphRequestManager().addRequest(infoRequest).start();
+            }
+          );
+        }
+      },
+      (error) => {
+        console.log('Login fail with error: ' + error);
+      });
+    }
+
+    // response from Facebook GraphAPI
+    _responseInfoCallback(error: ?Object, result: ?Object) {
+      if (error) {
+        alert('Error fetching data: ' + error.toString());
+      } else {
+        // TODO: save to Firebase
+        console.log(result);
+        alert('Success fetching data: ' + result.toString());
+      }
+    }
+
   render() {
     return (
       <ContentCoverSlider title='Your Flock Account'>
@@ -95,6 +141,7 @@ export default class Login extends Component {
             Styles.Card, styles.card
           ]}>
           <Button
+            onPress={this.loginWithFacebook}
             icon={{
               name: 'facebook',
               type: 'entypo',
