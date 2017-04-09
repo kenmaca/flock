@@ -20,6 +20,7 @@ import Search from './views/Search';
 import Profile from './views/Profile';
 import Restaurant from './views/Restaurant';
 import Web from './views/Web';
+import Camera from './components/common/Camera';
 
 export default class Index extends Component {
   render() {
@@ -63,6 +64,9 @@ export default class Index extends Component {
               <Scene
                 key='web'
                 component={Web} />
+              <Scene
+                key='camera'
+                component={Camera} />
           </Scene>
         </Router>
       </View>
