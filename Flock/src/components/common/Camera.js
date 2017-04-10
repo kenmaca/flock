@@ -23,11 +23,11 @@ export default class Camera extends Component {
       // orientation -
       // flash mode -
       camera: {
-        // aspect: Camera.constants.Aspect.fill,
-        // captureTarget: Camera.constants.CaptureTarget.cameraRoll,
-        type: 'back',
-        // orientation: Camera.constants.Orientation.auto,
-        // flashMode: Camera.constants.FlashMode.auto,
+        aspect: CameraX.constants.Aspect.fill,
+        captureTarget: CameraX.constants.CaptureTarget.disk,
+        type: CameraX.constants.Type.back,
+        orientation: CameraX.constants.Orientation.auto,
+        flashMode: CameraX.constants.FlashMode.auto,
       },
     }
     this.takePicture = this.takePicture.bind(this);
@@ -63,6 +63,9 @@ export default class Camera extends Component {
           }}
           style={styles.preview}
           type={this.state.camera.type}
+          captureTarget={this.state.camera.captureTarget}
+          flashMode={this.state.camera.flashMode}
+          orientation={this.state.camera.orientation}
           aspect={CameraX.constants.Aspect.fill}>
           <View style={styles.row}>
             <Text style={styles.exitCamera}>

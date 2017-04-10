@@ -8,6 +8,10 @@ import {
   Actions
 } from 'react-native-router-flux';
 
+import {
+  Sizes
+} from '../../Const';
+
 export default class Photo extends Component {
   constructor(props) {
     super(props);
@@ -21,8 +25,8 @@ export default class Photo extends Component {
     return (
       <View style={styles.container}>
         <Image
-          style={{height: 100, width: 100}}
-          source={{ uri: "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg" }}/>
+          style={styles.image}
+          source={{ uri: this.state.image.path.toString() }}/>
       </View>
     );
   }
@@ -33,5 +37,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  image: {
+    height: Sizes.Height,
+    width: Sizes.Width
   }
 });
