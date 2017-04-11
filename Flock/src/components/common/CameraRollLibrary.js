@@ -14,22 +14,13 @@ import {
 } from '../../Const';
 
 export default class CameraRollLibrary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      images: [],
-      loading: true,
-    }
-    // this.getSelectedImages = this.getSelectedImages.bind(this);
-
-  }
 
   getSelectedImages(Images, Content) {
     if (Images[0]) {
       console.log(Images[0].uri);
     }
     console.log(Content)
-    
+
   }
 
   render() {
