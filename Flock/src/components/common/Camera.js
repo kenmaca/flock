@@ -68,25 +68,11 @@ export default class Camera extends Component {
           orientation={this.state.camera.orientation}
           aspect={CameraX.constants.Aspect.fill}>
           <View style={styles.row}>
-            <Text style={styles.exitCamera}>
-              Cancel
-            </Text>
-            <TouchableHighlight
-              onPress={() => this.takePicture()}>
-              <View style={styles.black}/>
-            </TouchableHighlight>
-            <Icon
-              name='flash'
-              type='font-awesome'
-              size={30}
-              color='white'
-              containerStyle={styles.switchFlash}
-              onPress={() => this.switchCameraType()}/>
           </View>
           <View style={styles.row}>
             <Icon
               name='sync'
-              size={30}
+              size={20}
               color='white'
               containerStyle={styles.switchCameraType}
               onPress={() => this.switchCameraType()}/>
@@ -94,6 +80,13 @@ export default class Camera extends Component {
               onPress={() => this.takePicture()}>
               <View style={styles.capture}/>
             </TouchableHighlight>
+            <Icon
+              name='flash'
+              type='font-awesome'
+              size={20}
+              color='white'
+              containerStyle={styles.switchFlash}
+              onPress={() => this.switchCameraType()}/>
           </View>
       </CameraX>
     </View>
