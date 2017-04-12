@@ -24,7 +24,9 @@ export default class CustomAvatar extends Component {
   render() {
     return (
       <TouchableOpacity
-        onPress={Actions.profile}>
+        onPress={() => Actions.profile({
+          uid: this.props.uid
+        })}>
         <Animatable.View
           ref='avatar'
           style={[

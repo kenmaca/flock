@@ -10,6 +10,7 @@ import {
 import {
   Actions
 } from 'react-native-router-flux';
+import Firebase from '../../utils/Firebase';
 
 // components
 import {
@@ -19,6 +20,25 @@ import AvatarGroup from '../users/AvatarGroup';
 import UppercasedText from '../common/UppercasedText';
 
 export default class RestaurantCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentDidMount() {
+    this._restaurantRef = this.props.restaurantId && Firebase.database().ref(
+      `restaurants/${this.props.restaurantId}`
+    );
+
+    this._restaurantListener = this._restaurantRef && this._restaurantRef.on(
+      'value', restaurant => restaurant.exists() && this.setState(restaurant.val())
+    );
+  }
+
+  componentWillUnmount() {
+    this._restaurantRef && this._restaurantRef.off('value', this._restaurantListener);
+  }
+
   render() {
     return (
       <View style={[
@@ -28,7 +48,9 @@ export default class RestaurantCard extends Component {
           }
         ]}>
         <TouchableOpacity
-          onPress={Actions.restaurant}>
+          onPress={() => Actions.restaurant({
+            restaurantId: this.props.restaurantId
+          })}>
           <Card
             containerStyle={styles.card}
             image={{
@@ -40,7 +62,7 @@ export default class RestaurantCard extends Component {
                     Styles.Text, Styles.Emphasized, Styles.Title,
                     Styles.BottomSpacing
                   ]}>
-                  Boralia
+                  {this.state.name || ''}
                 </UppercasedText>
                 <AvatarGroup
                   size={23}
@@ -53,7 +75,7 @@ export default class RestaurantCard extends Component {
               </Text>
               <View style={Styles.EqualColumns}>
                 <UppercasedText style={Styles.Text, Styles.SmallText}>
-                  Canadian, Heritage, and Cute
+                  {this.state.address || ''}
                 </UppercasedText>
               </View>
             </View>

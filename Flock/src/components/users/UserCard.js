@@ -19,7 +19,9 @@ export default class UserCard extends Component {
     return (
       <Card
         containerStyle={styles.container}>
-        <Avatar size={50} />
+        <Avatar
+          uid='RtaxYshaOtbxsrwAqqauxSH4tfw2'
+          size={50} />
         <Text
           style={[
             Styles.Text, Styles.Center, Styles.SmallText,

@@ -23,33 +23,25 @@ export default class RestaurantList extends Component {
   renderRestaurantItem({item, index}) {
     return (
       <RestaurantCard
-        spacing={Sizes.InnerFrame}
+        spacing={index ? Sizes.InnerFrame: this.props.startSpacing || 0}
+        restaurantId={item}
         key={item} />
     );
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <FlatList
-          onStartShouldSetResponder={evt => false}
-          onMoveShouldSetResponder={evt => false}
-          keyExtractor={(item, index) => `resto-${index}`}
-          data={[1, 2, 3]}
-          renderItem={this.renderRestaurantItem}
-          style={styles.list} />
-      </View>
+      <FlatList
+        onScroll={this.props.onScroll}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item, index) => `resto-${index}`}
+        data={this.props.restaurants || []}
+        renderItem={this.renderRestaurantItem} />
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  },
-
-  list: {
-    flex: 1,
-    alignSelf: 'stretch'
   }
 });

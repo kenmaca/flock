@@ -32,7 +32,7 @@ export default class ContentCoverSlider extends Component {
 
   onScroll(event) {
     const y = event.nativeEvent.contentOffset.y;
-    (y > -150) ? this.setState({y: y}): Actions.pop();
+    (y > -Sizes.Height / 4) ? this.setState({y: y}): Actions.pop();
   }
 
   render() {

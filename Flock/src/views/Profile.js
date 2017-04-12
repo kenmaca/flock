@@ -7,6 +7,7 @@ import {
 import {
   Colors, Sizes, Styles
 } from '../Const';
+import Firebase from '../utils/Firebase';
 
 // components
 import {
@@ -15,24 +16,61 @@ import {
 import Avatar from '../components/users/Avatar';
 import ContentCoverSlider from '../components/common/ContentCoverSlider';
 import UppercasedText from '../components/common/UppercasedText';
+import RestaurantList from '../components/restaurants/RestaurantList';
 
 // animations
 import * as Animatable from 'react-native-animatable';
 const AnimatedAvatar = Animatable.createAnimatableComponent(Avatar);
 
 export default class Profile extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      restaurants: []
+    };
+  }
+
   componentDidMount() {
 
     // start on center page
     this.refs.pages.scrollTo({
       x: Sizes.Width, y: 0, animated: true
     });
+
+    // grab user based on uid
+    this._userRef = this.props.uid && Firebase.database().ref(
+      `users/${this.props.uid}`
+    );
+    this._userListener = this._userRef && this._userRef.on(
+      'value', user => user.exists() && this.setState(user.val())
+    );
+
+    // visits, delayed to smooth load transition
+    // TODO: pretty hacky
+    this._visitRef = this.props.uid && Firebase.database().ref(
+      `visits/${this.props.uid}`
+    );
+    setTimeout(() => {
+      this._visitListener = this._visitRef && this._visitRef.on(
+        'value', visits => visits.exists() && this.setState({
+          restaurants: Object.keys(visits.val())
+        })
+      );
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    this._userRef && this._userRef.off('value', this._userListener);
+    this._visitRef && this._visitRef.off('value', this._visitListener);
   }
 
   render() {
+    console.log(this.state.restaurants);
     return (
       <View style={styles.container}>
-        <ContentCoverSlider title='Alexandra Lee'>
+        <ContentCoverSlider
+          ref='container'
+          title={this.state.fullName || this.state.screenName}>
           <ScrollView
             horizontal
             pagingEnabled
@@ -40,9 +78,11 @@ export default class Profile extends Component {
             showsHorizontalScrollIndicator={false}
             style={styles.horizontalScroll}>
             <View style={[styles.page, styles.frequented]}>
-              <View style={[
-                  Styles.Card, styles.card, styles.header
-                ]}>
+              <View style={styles.card}>
+                <RestaurantList
+                  onScroll={event => this.refs.container.onScroll(event)}
+                  startSpacing={125}
+                  restaurants={this.state.restaurants} />
               </View>
             </View>
             <View style={[styles.page, styles.timeline]}>
@@ -54,10 +94,10 @@ export default class Profile extends Component {
                   <UppercasedText style={[
                       Styles.Text, Styles.Emphasized, Styles.Title
                     ]}>
-                    Alexandra Lee
+                    {this.state.fullName || ''}
                   </UppercasedText>
                   <Text style={[Styles.Text, Styles.Subtitle, Styles.BottomSpacing]}>
-                    @lexigirl
+                    {this.state.screenName && `@${this.state.screenName}`}
                   </Text>
                   <Button
                     title='Add to my Flock'
@@ -73,7 +113,7 @@ export default class Profile extends Component {
               <View style={styles.stats}>
                 <View style={styles.trophyCase}>
                   <Button
-                    title='23 Influenced'
+                    title='0 Influenced'
                     fontSize={Sizes.SmallText}
                     backgroundColor={Colors.Transparent}
                     color={Colors.SubduedText}
@@ -85,7 +125,7 @@ export default class Profile extends Component {
                       color: Colors.SubduedText
                     }} />
                     <Button
-                      title='38 In Flock'
+                      title='0 In Flock'
                       fontSize={Sizes.SmallText}
                       backgroundColor={Colors.Transparent}
                       color={Colors.SubduedText}
@@ -97,7 +137,9 @@ export default class Profile extends Component {
                         color: Colors.SubduedText
                       }} />
                     <Button
-                      title='129 Restaurants'
+                      title={`${
+                        this.state.restaurants.length
+                      } Restaurants`}
                       fontSize={Sizes.SmallText}
                       backgroundColor={Colors.Transparent}
                       color={Colors.SubduedText}
@@ -159,7 +201,7 @@ const styles = StyleSheet.create({
 
   horizontalScroll: {
     flex: 1,
-    height: Sizes.Height
+    height: Sizes.Height - 40
   },
 
   page: {
