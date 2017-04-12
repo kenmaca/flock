@@ -26,8 +26,12 @@ export default class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurants: []
+      restaurants: [],
+      isFollowing: false
     };
+
+    // bindings
+    this.follow = this.follow.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +47,16 @@ export default class Profile extends Component {
     );
     this._userListener = this._userRef && this._userRef.on(
       'value', user => user.exists() && this.setState(user.val())
+    );
+
+    // grab following status
+    this._followingRef = this.props.uid && Firebase.database().ref(
+      `users/${Firebase.auth().currentUser.uid}/following/${this.props.uid}`
+    );
+    this._followingListener = this._followingRef && this._followingRef.on(
+      'value', following => this.setState({
+        isFollowing: following.exists() && following.val()
+      })
     );
 
     // visits, delayed to smooth load transition
@@ -62,6 +76,13 @@ export default class Profile extends Component {
   componentWillUnmount() {
     this._userRef && this._userRef.off('value', this._userListener);
     this._visitRef && this._visitRef.off('value', this._visitListener);
+    this._followingRef && this._followingRef.off('value', this._followingListener);
+  }
+
+  follow() {
+    Firebase.database().ref(
+      `users/${Firebase.auth().currentUser.uid}/following/${this.props.uid}`
+    ).set(!this.state.isFollowing);
   }
 
   render() {
@@ -100,12 +121,13 @@ export default class Profile extends Component {
                     {this.state.screenName && `@${this.state.screenName}`}
                   </Text>
                   <Button
-                    title='Add to my Flock'
+                    title={this.state.isFollowing ? 'Remove from my Flock': 'Add to my Flock'}
+                    onPress={this.follow}
                     fontSize={Sizes.Text}
-                    backgroundColor={Colors.PositiveButton}
+                    backgroundColor={this.state.isFollowing ? Colors.NegativeButton: Colors.PositiveButton}
                     buttonStyle={styles.addFlockButton}
                     icon={{
-                      name: 'group-add',
+                      name: this.state.isFollowing ? 'clear': 'add',
                       size: Sizes.Text
                     }} />
                 </View>

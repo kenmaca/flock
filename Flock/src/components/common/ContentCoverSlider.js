@@ -14,7 +14,6 @@ import {
 // components
 import UppercasedText from './UppercasedText';
 import * as Animatable from 'react-native-animatable';
-const AnimatedScrollView = Animatable.createAnimatableComponent(ScrollView);
 import {
   Icon
 } from 'react-native-elements';
@@ -61,13 +60,11 @@ export default class ContentCoverSlider extends Component {
               opacity: (100 - this.state.y) / 100
             }
           ]} />
-        <AnimatedScrollView
-          scrollEventThrottle={16}
-          onScroll={this.onScroll}
+        <Animatable.View
           animation='bounceInUp'
           style={styles.content}>
           {this.props.children}
-        </AnimatedScrollView>
+        </Animatable.View>
       </View>
     );
   }

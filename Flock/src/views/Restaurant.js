@@ -25,134 +25,138 @@ import {
 export default class Restaurant extends Component {
   render() {
     return (
-      <ContentCoverSlider title='BORALIA'>
-        <View style={[
-            Styles.Card, styles.card, styles.header
-          ]}>
-          <UppercasedText style={[
-              Styles.Text, Styles.Emphasized, Styles.Title, Styles.BottomSpacing
+      <ContentCoverSlider ref='container' title='BORALIA'>
+        <ScrollView
+          scrollEventThrottle={16}
+          onScroll={event => this.refs.container.onScroll(event)}>
+          <View style={[
+              Styles.Card, styles.card, styles.header
             ]}>
-            BORALIA
-          </UppercasedText>
-          <Text style={[Styles.Text, Styles.Subtitle, Styles.BottomSpacing]}>
-            Boralia celebrates the historic origins of Canadian cuisine. Our menu draws inspiration from traditional Aboriginal dishes, as well as the recipes of early settlers and immigrants of the 18th and 19th centuries.
-          </Text>
-          <View style={Styles.EqualColumns}>
-            <UppercasedText style={Styles.Text, Styles.SmallText}>
-              Canadian, Heritage, and Cute
+            <UppercasedText style={[
+                Styles.Text, Styles.Emphasized, Styles.Title, Styles.BottomSpacing
+              ]}>
+              BORALIA
             </UppercasedText>
+            <Text style={[Styles.Text, Styles.Subtitle, Styles.BottomSpacing]}>
+              Boralia celebrates the historic origins of Canadian cuisine. Our menu draws inspiration from traditional Aboriginal dishes, as well as the recipes of early settlers and immigrants of the 18th and 19th centuries.
+            </Text>
+            <View style={Styles.EqualColumns}>
+              <UppercasedText style={Styles.Text, Styles.SmallText}>
+                Canadian, Heritage, and Cute
+              </UppercasedText>
+            </View>
           </View>
-        </View>
-        <View
-          horizontal
-          style={[Styles.Card, styles.card, styles.photos]}>
-          <ScrollView
+          <View
             horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.photoScroll}>
-            <Image
-              style={styles.photo}
-              source={{
-                uri: 'https://s3-media2.fl.yelpcdn.com/bphoto/YWhgTgKx2t-0uZ1W6We6NQ/o.jpg'
+            style={[Styles.Card, styles.card, styles.photos]}>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.photoScroll}>
+              <Image
+                style={styles.photo}
+                source={{
+                  uri: 'https://s3-media2.fl.yelpcdn.com/bphoto/YWhgTgKx2t-0uZ1W6We6NQ/o.jpg'
+                }} />
+              <Image
+                style={styles.photo}
+                source={{
+                  uri: 'https://s3-media2.fl.yelpcdn.com/bphoto/9XHM_E5cBYY-UypYKrSfiA/o.jpg'
+                }} />
+              <Image
+                style={styles.photo}
+                source={{
+                  uri: 'https://s3-media4.fl.yelpcdn.com/bphoto/bZ51B1Vf0fCbrYpn4eVHaw/o.jpg'
+                }} />
+              <Image
+                style={styles.photo}
+                source={{
+                  uri: 'https://s3-media1.fl.yelpcdn.com/bphoto/ZYJuIq3JPPKMqXPAkeIcyQ/o.jpg'
+                }} />
+              <Image
+                style={styles.photo}
+                source={{
+                  uri: 'https://s3-media1.fl.yelpcdn.com/bphoto/x0dXMXOLmjmIOtrFwbbBGA/o.jpg'
+                }} />
+            </ScrollView>
+          </View>
+          <Image
+            source={{
+              uri: 'https://c2.staticflickr.com/8/7585/26457494503_7f050b669f_o.png'
+            }}
+            style={[Styles.Card, styles.map]}>
+            <Text style={[
+                Styles.Text, Styles.Emphasized, Styles.Title,
+                Styles.BottomSpacing, Styles.Alternate
+              ]}>
+              Location
+            </Text>
+            <Text style={[Styles.Text, Styles.Alternate]}>
+              59 Ossington Avenue,
+              Toronto, ON M6J 2Y9
+            </Text>
+            <Button
+              title='Expand the map'
+              fontSize={Sizes.Text}
+              backgroundColor={Colors.PositiveButton}
+              buttonStyle={styles.mapButton}
+              icon={{
+                name: 'map',
+                type: 'entypo',
+                size: Sizes.Text
               }} />
-            <Image
-              style={styles.photo}
-              source={{
-                uri: 'https://s3-media2.fl.yelpcdn.com/bphoto/9XHM_E5cBYY-UypYKrSfiA/o.jpg'
-              }} />
-            <Image
-              style={styles.photo}
-              source={{
-                uri: 'https://s3-media4.fl.yelpcdn.com/bphoto/bZ51B1Vf0fCbrYpn4eVHaw/o.jpg'
-              }} />
-            <Image
-              style={styles.photo}
-              source={{
-                uri: 'https://s3-media1.fl.yelpcdn.com/bphoto/ZYJuIq3JPPKMqXPAkeIcyQ/o.jpg'
-              }} />
-            <Image
-              style={styles.photo}
-              source={{
-                uri: 'https://s3-media1.fl.yelpcdn.com/bphoto/x0dXMXOLmjmIOtrFwbbBGA/o.jpg'
-              }} />
-          </ScrollView>
-        </View>
-        <Image
-          source={{
-            uri: 'https://c2.staticflickr.com/8/7585/26457494503_7f050b669f_o.png'
-          }}
-          style={[Styles.Card, styles.map]}>
-          <Text style={[
-              Styles.Text, Styles.Emphasized, Styles.Title,
-              Styles.BottomSpacing, Styles.Alternate
+          </Image>
+          <View style={[
+              Styles.Card, styles.card, styles.hours
             ]}>
-            Location
-          </Text>
-          <Text style={[Styles.Text, Styles.Alternate]}>
-            59 Ossington Avenue,
-            Toronto, ON M6J 2Y9
-          </Text>
-          <Button
-            title='Expand the map'
-            fontSize={Sizes.Text}
-            backgroundColor={Colors.PositiveButton}
-            buttonStyle={styles.mapButton}
-            icon={{
-              name: 'map',
-              type: 'entypo',
-              size: Sizes.Text
-            }} />
-        </Image>
-        <View style={[
-            Styles.Card, styles.card, styles.hours
-          ]}>
-          <Text style={[
-              Styles.Text, Styles.Emphasized, Styles.Title,
-              Styles.BottomSpacing
-            ]}>
-            Business Hours
-          </Text>
-          <View style={Styles.EqualColumns}>
-            <View>
-              <Text style={[Styles.Text, Styles.Subtitle]}>
-                Tues - Friday
-              </Text>
-              <Text style={Styles.Text}>
-                5:00pm - 10:00pm
-              </Text>
-            </View>
-            <View>
-              <Text style={[Styles.Text, Styles.Subtitle]}>
-                Sat - Sun
-              </Text>
-              <Text style={Styles.Text}>
-                5:00pm - 9:00pm
-              </Text>
-            </View>
-            <View>
-              <Text style={[Styles.Text, Styles.Subtitle]}>
-                Monday
-              </Text>
-              <Text style={Styles.Text}>
-                Closed
-              </Text>
+            <Text style={[
+                Styles.Text, Styles.Emphasized, Styles.Title,
+                Styles.BottomSpacing
+              ]}>
+              Business Hours
+            </Text>
+            <View style={Styles.EqualColumns}>
+              <View>
+                <Text style={[Styles.Text, Styles.Subtitle]}>
+                  Tues - Friday
+                </Text>
+                <Text style={Styles.Text}>
+                  5:00pm - 10:00pm
+                </Text>
+              </View>
+              <View>
+                <Text style={[Styles.Text, Styles.Subtitle]}>
+                  Sat - Sun
+                </Text>
+                <Text style={Styles.Text}>
+                  5:00pm - 9:00pm
+                </Text>
+              </View>
+              <View>
+                <Text style={[Styles.Text, Styles.Subtitle]}>
+                  Monday
+                </Text>
+                <Text style={Styles.Text}>
+                  Closed
+                </Text>
+              </View>
             </View>
           </View>
-        </View>
-        <View style={styles.card}>
-          <Question>
-            What did you order?
-          </Question>
-          <Answer />
-          <Answer />
-          <Answer />
-          <Answer />
-          <Question>
-            Where did you park?
-          </Question>
-          <Answer />
-          <Answer />
-        </View>
+          <View style={styles.card}>
+            <Question>
+              What did you order?
+            </Question>
+            <Answer />
+            <Answer />
+            <Answer />
+            <Answer />
+            <Question>
+              Where did you park?
+            </Question>
+            <Answer />
+            <Answer />
+          </View>
+        </ScrollView>
       </ContentCoverSlider>
     );
   }
