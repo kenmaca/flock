@@ -22,6 +22,7 @@ import Restaurant from './views/Restaurant';
 import Web from './views/Web';
 import Camera from './components/common/Camera';
 import Photo from './components/common/Photo';
+import Upload from './views/Upload';
 
 export default class Index extends Component {
   render() {
@@ -71,6 +72,9 @@ export default class Index extends Component {
               <Scene
                 key='photo'
                 component={Photo} />
+              <Scene
+                key='upload'
+                component={Upload} />
           </Scene>
         </Router>
       </View>
