@@ -98,8 +98,8 @@ export default class Profile extends Component {
             ref='pages'
             showsHorizontalScrollIndicator={false}
             style={styles.horizontalScroll}>
-            <View style={[styles.page, styles.frequented]}>
-              <View style={styles.card}>
+            <View style={styles.page}>
+              <View style={[styles.card, styles.frequented]}>
                 <RestaurantList
                   onScroll={event => this.refs.container.onScroll(event)}
                   startSpacing={125}
@@ -278,5 +278,9 @@ const styles = StyleSheet.create({
     paddingRight: Sizes.OuterFrame * 2,
     justifyContent: 'space-between',
     backgroundColor: Colors.PositiveButton
+  },
+
+  frequented: {
+    marginBottom: 0
   }
 });

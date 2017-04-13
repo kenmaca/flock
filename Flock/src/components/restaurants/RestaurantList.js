@@ -36,12 +36,14 @@ export default class RestaurantList extends Component {
         showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => `resto-${index}`}
         data={this.props.restaurants || []}
-        renderItem={this.renderRestaurantItem} />
+        renderItem={this.renderRestaurantItem}
+        contentContainerStyle={styles.container} />
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+    paddingBottom: Sizes.InnerFrame
   }
 });

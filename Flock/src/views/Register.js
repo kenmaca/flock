@@ -99,7 +99,7 @@ export default class Register extends Component {
 
   render() {
     return (
-      <ContentCoverSlider>
+      <ContentCoverSlider backAction={false}>
         <View style={[
             Styles.Card, styles.card, styles.header
           ]}>

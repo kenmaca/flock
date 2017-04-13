@@ -81,7 +81,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <ContentCoverSlider title='Your Flock Account'>
+      <ContentCoverSlider title='Your Flock Account' backAction={false}>
         <View style={[
             styles.card, styles.header
           ]}>
