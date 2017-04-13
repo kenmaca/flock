@@ -10,6 +10,7 @@ import {
 import {
   Actions
 } from 'react-native-router-flux';
+import Firebase from '../utils/Firebase';
 
 // components
 import Header from '../components/common/Header';
@@ -20,16 +21,75 @@ import {
 } from 'react-native-elements';
 
 export default class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      results: []
+    };
+    this._searchRef = Firebase.database().ref('search');
+
+    // bindings
+    this.search = this.search.bind(this);
+  }
+
+  search(term) {
+    if (term) {
+
+      // get rid of previous search task
+      this._searchTask && clearTimeout(this._searchTask);
+      this._searchTask = setTimeout(() => {
+
+        // send the request and log the key to listen to
+        this._responseKey = this._searchRef.child('request').push({
+
+          // query
+          type: 'user', index: 'firebase', q: `*${term}*`
+        }).key;
+
+        // keep track of key to display
+        this._responseRef = this._searchRef.child(
+          `response/${this._responseKey}`
+        );
+        this._responseListener = this._responseRef.on(
+          'value', response => {
+            if (response.exists()) {
+
+              // state the matching hits
+              response = response.val();
+              this.setState({
+                results: response.hits.total ? response.hits.hits: []
+              });
+
+              // and kill the listener + fb object
+              this._responseRef.off('value', this._responseListener);
+              this._responseRef.remove();
+            }
+          }
+        )
+      }, 200);
+    } else {
+
+      // clearing search removes results
+      this.setState({results: []});
+    }
+  }
+
+  componentWillUnmount() {
+    this._responseListener && this._responseRef.off('value', this._responseListener);
+  }
+
   renderItem({item, index}) {
     return (
       <TouchableOpacity
-        onPress={Actions.profile}>
+        onPress={() => Actions.profile({
+          uid: item._id
+        })}>
         <ListItem
           key={index}
           roundAvatar
-          title='Alexandra Lee'
+          title={item._source.fullName}
           titleStyle={[Styles.Text, Styles.Emphasized]}
-          subtitle='@lexigirl'
+          subtitle={`@${item._source.screenName}`}
           subtitleStyle={Styles.Text}
           avatar={{
             uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'
@@ -51,6 +111,7 @@ export default class Search extends Component {
             <SearchBar
               noIcon
               autoFocus
+              onChangeText={this.search}
               containerStyle={styles.searchContainer}
               inputStyle={styles.searchInput}
               placeholder='Search people' />
@@ -67,22 +128,20 @@ export default class Search extends Component {
         </Animatable.View>
         <ScrollView
           style={styles.scroll}>
-          <View style={styles.section}>
-            <HeaderText text='Previously followed' />
-          </View>
-          <FlatList
-            keyExtractor={(item, index) => index}
-            data={[1, 2, 3, 4]}
-            renderItem={this.renderItem}
-            style={styles.list} />
-          <View style={styles.section}>
-            <HeaderText text='Popular' />
-          </View>
-          <FlatList
-            keyExtractor={(item, index) => index}
-            data={[1, 2, 3, 4]}
-            renderItem={this.renderItem}
-            style={styles.list} />
+          {
+            this.state.results.length > 0 && (
+              <View>
+                <View style={styles.section}>
+                  <HeaderText text='Results' />
+                </View>
+                <FlatList
+                  keyExtractor={(item, index) => index}
+                  data={this.state.results}
+                  renderItem={this.renderItem}
+                  style={styles.list} />
+              </View>
+            )
+          }
         </ScrollView>
       </View>
     );
