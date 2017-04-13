@@ -32,6 +32,7 @@ export default class RestaurantList extends Component {
   render() {
     return (
       <FlatList
+        {...this.props}
         onScroll={this.props.onScroll}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => `resto-${index}`}

@@ -38,7 +38,7 @@ export default class Profile extends Component {
 
     // start on center page
     this.refs.pages.scrollTo({
-      x: Sizes.Width, y: 0, animated: true
+      x: 0, y: 0, animated: true
     });
 
     // grab user based on uid
@@ -70,7 +70,7 @@ export default class Profile extends Component {
           restaurants: Object.keys(visits.val())
         })
       );
-    }, 1000);
+    }, 500);
   }
 
   componentWillUnmount() {
@@ -98,15 +98,10 @@ export default class Profile extends Component {
             ref='pages'
             showsHorizontalScrollIndicator={false}
             style={styles.horizontalScroll}>
-            <View style={styles.page}>
-              <View style={[styles.card, styles.frequented]}>
-                <RestaurantList
-                  onScroll={event => this.refs.container.onScroll(event)}
-                  startSpacing={125}
-                  restaurants={this.state.restaurants} />
-              </View>
-            </View>
-            <View style={[styles.page, styles.timeline]}>
+            <ScrollView
+              scrollEventThrottle={16}
+              onScroll={event => this.refs.container.onScroll(event)}
+              style={[styles.page, styles.timeline]}>
               <View style={[
                   Styles.Card, styles.card, styles.header
                 ]}>
@@ -174,40 +169,30 @@ export default class Profile extends Component {
                       }} />
                 </View>
               </View>
-              <View style={[
-                  Styles.Card, styles.card
-                ]}>
+              <View style={styles.card}>
+                <RestaurantList
+                  scrollEnabled={false}
+                  restaurants={this.state.restaurants} />
               </View>
-            </View>
-            <View style={[styles.page, styles.frequented]}>
-              <View style={[
-                  Styles.Card, styles.card, styles.header
-                ]}>
-              </View>
+            </ScrollView>
+            <View style={styles.page}>
             </View>
           </ScrollView>
         </ContentCoverSlider>
         <View style={styles.footer}>
           <Icon
-            name='favorite-border'
+            name='face'
             color={Colors.AlternateText}
             underlayColor={Colors.Transparent}
             onPress={() => this.refs.pages.scrollTo({
               x: 0, y: 0, animated: true
             })} />
           <Icon
-            name='face'
+            name='map'
             color={Colors.AlternateText}
             underlayColor={Colors.Transparent}
             onPress={() => this.refs.pages.scrollTo({
               x: Sizes.Width, y: 0, animated: true
-            })} />
-          <Icon
-            name='timeline'
-            color={Colors.AlternateText}
-            underlayColor={Colors.Transparent}
-            onPress={() => this.refs.pages.scrollTo({
-              x: Sizes.Width * 2, y: 0, animated: true
             })} />
         </View>
       </View>
