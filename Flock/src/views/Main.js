@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react';
 import {
-  View, StyleSheet, Text, FlatList, ScrollView
+  View, StyleSheet, Text, FlatList, ScrollView, TouchableOpacity
 } from 'react-native';
 import {
   Colors, Sizes
@@ -48,9 +48,14 @@ export default class Main extends Component {
 
   renderUserItem({item, index}) {
     return (
-      <UserCard
-        uid={item}
-        key={item} />
+      <TouchableOpacity
+        onPress={() => Actions.profile({
+          uid: item
+        })}>
+        <UserCard
+          uid={item}
+          key={item} />
+      </TouchableOpacity>
     );
   }
 
