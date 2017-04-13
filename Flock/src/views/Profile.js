@@ -17,6 +17,7 @@ import Avatar from '../components/users/Avatar';
 import ContentCoverSlider from '../components/common/ContentCoverSlider';
 import UppercasedText from '../components/common/UppercasedText';
 import RestaurantList from '../components/restaurants/RestaurantList';
+import MapView from 'react-native-maps';
 
 // animations
 import * as Animatable from 'react-native-animatable';
@@ -27,6 +28,8 @@ export default class Profile extends Component {
     super(props);
     this.state = {
       restaurants: [],
+      _restaurants: {},
+      checkins: {},
       isFollowing: false
     };
 
@@ -67,7 +70,8 @@ export default class Profile extends Component {
     setTimeout(() => {
       this._visitListener = this._visitRef && this._visitRef.on(
         'value', visits => visits.exists() && this.setState({
-          restaurants: Object.keys(visits.val())
+          restaurants: Object.keys(visits.val()),
+          _restaurants: visits.val()
         })
       );
     }, 500);
@@ -85,8 +89,58 @@ export default class Profile extends Component {
     ).set(!this.state.isFollowing);
   }
 
+  groupByDay(checkins) {
+    return Object
+      .keys(checkins)
+      .sort()
+      .map(date => ({
+        date: date,
+        coords: checkins[date]
+      }))
+      .reduce((acc, val) => Object.assign(acc, {
+        [Math.round(val.date / (3600 * 1000 * 24))]: (
+          acc[Math.round(val.date / (3600 * 1000 * 24))]
+          ? acc[Math.round(val.date / (3600 * 1000 * 24))].concat([val])
+          : [val]
+        )
+      }), {});
+  }
+
+  groupsToPolylines(groups) {
+    return Object
+      .values(groups)
+      .map((group, i) => (
+        <MapView.Polyline
+          key={`line-${i}`}
+          coordinates={group.map(checkin => checkin.coords)}
+          strokeWidth={4}
+          strokeColor={`#${(Math.random() * 0xFFFFFF << 0).toString(16)}`} />
+      ));
+  }
+
+  restaurantsToMarkers(restaurants, checkins) {
+    return Object
+      .values(restaurants)
+      .map(restaurant => Object
+        .keys(restaurant)
+
+        // only use visits matching a checkin (for location data)
+        .filter(date => checkins[date])
+        .reduce((acc, val) => Object.assign(acc, {
+          frequency: acc.frequency + 1,
+          lastCheckin: val
+        }), {frequency: 0})
+
+      // only show restaurants with a corresponding checkin
+      ).filter(checkin => checkin.frequency > 0)
+      .map((checkin, i) => (
+        <MapView.Marker
+          key={`marker-${i}`}
+          coordinate={checkins[checkin.lastCheckin].coords} />
+      ));
+  }
+
   render() {
-    console.log(this.state.restaurants);
     return (
       <View style={styles.container}>
         <ContentCoverSlider
@@ -176,6 +230,22 @@ export default class Profile extends Component {
               </View>
             </ScrollView>
             <View style={styles.page}>
+              <MapView
+                style={styles.map}
+                region={{
+                  latitude: 43.70011,
+                  longitude: -79.4163,
+                  latitudeDelta: 0.5,
+                  longitudeDelta: 0.5,
+                }}>
+                {
+                  this.groupsToPolylines(
+                    this.groupByDay(this.state.checkins)
+                  ).concat(this.restaurantsToMarkers(
+                    this.state._restaurants, this.state.checkins
+                  ))
+                }
+              </MapView>
             </View>
           </ScrollView>
         </ContentCoverSlider>
@@ -267,5 +337,9 @@ const styles = StyleSheet.create({
 
   frequented: {
     marginBottom: 0
+  },
+
+  map: {
+    flex: 1
   }
 });

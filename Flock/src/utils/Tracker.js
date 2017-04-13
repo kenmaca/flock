@@ -53,9 +53,10 @@ export default class Tracker {
       .then(places => {
 
         // TODO: remove after prototype, checking if data is logged
+        const now = Date.now();
         Firebase.database().ref(
           `users/${Firebase.auth().currentUser.uid}/checkins`
-        ).child(Date.now()).set({
+        ).child(now).set({
           latitude: location.latitude,
           longitude: location.longitude
         });
@@ -79,7 +80,7 @@ export default class Tracker {
           // and finally, with today's visit
           Firebase.database().ref(
             `visits/${Firebase.auth().currentUser.uid}/${place.place_id}`
-          ).child(Date.now()).set(true);
+          ).child(now).set(true);
         }
       }).catch(this.onError);
   }
