@@ -10,44 +10,58 @@ import {
   Sizes
 } from '../Const';
 
-// imports for testing photo Component and camera Component
 import Camera from '../components/common/Camera';
 import CameraRollLibrary from '../components/common/CameraRollLibrary';
+import Swiper from 'react-native-swiper';
+
+
+const num = 0;
 
 export default class Upload extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      title: this.props.title,
-      mainView: this.props.mainView || (<View style={styles.mainView}/>)
+      index: num
     }
+  }
 
+  onMomentumScrollEnd(e, s, c) {
+    num = s.index;
+    console.log(num)
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.topBar}>
-          <Text>
-            Cancel
+        <View style={[styles.row, {height: Sizes.Height * 0.1}]}>
+          <Text style={[styles.sideButton, {left: 10}]}>
+            cancel
           </Text>
           <Text>
-            Title
+            {
+              this.state.index == 0
+              ?
+              'Camera Roll'
+              :
+              'Photo'
+            }
           </Text>
-          <Text>
-            Next
+          <Text style={[styles.sideButton, {right: 10}]}>
+            next
           </Text>
         </View>
-        <View style={styles.mainView}>
-          <CameraRollLibrary/>
-        </View>
-        <View style={styles.botBar}>
-          <Text>
-            Library
-          </Text>
-          <Text>
-            Photo
-          </Text>
+        <Swiper
+          title='yiyiiyiyi'
+          loop={false}
+          height={Sizes.Height * 0.8}
+          index={0}
+          showsPagination={false}
+          onMomentumScrollEnd={this.onMomentumScrollEnd}>
+          <CameraRollLibrary />
+          <Camera height={Sizes.Height * 0.5}/>
+        </Swiper>
+        <View style={[styles.row, {height: Sizes.Height * 0.1, backgroundColor: '#F5F5F5'}]}>
         </View>
       </View>
     );
@@ -57,27 +71,14 @@ export default class Upload extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  row: {
+    flexDirection: 'row',
+    backgroundColor: 'yellow',
+    justifyContent: 'center',
     alignItems: 'center'
   },
-  topBar: {
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'stretch',
-    height: Sizes.Height / 10,
-    backgroundColor: 'red'
-  },
-  botBar: {
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'stretch',
-    height: Sizes.Height / 10,
-    backgroundColor: 'blue'
-  },
-  mainView: {
-    flex: 1,
-    alignSelf: 'stretch',
-    // backgroundColor: 'black'
+  sideButton: {
+    position: 'absolute'
   }
 });

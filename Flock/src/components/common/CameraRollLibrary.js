@@ -38,11 +38,9 @@ export default class CameraRollLibrary extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.selectedImage}>
-          <Image
-            style={{height: Sizes.Height/2,  width: Sizes.Width}}
-            source={{ uri: this.state.image ||  'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'}}/>
-        </View>
+        <Image
+          style={{height: Sizes.Height/2,  width: Sizes.Width}}
+          source={{ uri: this.state.image ||  'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'}}/>
         <CameraRollPicker
           imagesPerRow={4}
           imageMargin={1}

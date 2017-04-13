@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react';
 import {
-  View, StyleSheet, TouchableHighlight, Text
+  View, StyleSheet, TouchableOpacity, Text, Image
 } from 'react-native';
 import CameraX from 'react-native-camera';
 import {
@@ -11,17 +11,15 @@ import {
 import {
   Icon
 } from 'react-native-elements';
+import {
+  Sizes
+} from '../../Const';
 
 export default class Camera extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // states for camera
-      // aspect -
-      // capture target -
-      // type -
-      // orientation -
-      // flash mode -
+      isPhoto: false,
       camera: {
         aspect: CameraX.constants.Aspect.fill,
         captureTarget: CameraX.constants.CaptureTarget.disk,
@@ -39,8 +37,13 @@ export default class Camera extends Component {
     const options = {};
     //options.location = ...
     this.camera.capture({metadata: options})
-    .then((data) => Actions.photo({image: data}))
+    .then((data) => this.setState({
+      isPhoto: true,
+      image: data
+    }))
     .catch(err => console.error(err));
+
+
   }
 
   switchCameraType() {
@@ -57,38 +60,51 @@ export default class Camera extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <CameraX
-          ref={(cam) => {
-            this.camera = cam;
-          }}
-          style={styles.preview}
-          type={this.state.camera.type}
-          captureTarget={this.state.camera.captureTarget}
-          flashMode={this.state.camera.flashMode}
-          orientation={this.state.camera.orientation}
-          aspect={CameraX.constants.Aspect.fill}>
-          <View style={styles.row}>
-          </View>
-          <View style={styles.row}>
-            <Icon
-              name='sync'
-              size={20}
-              color='white'
-              containerStyle={styles.switchCameraType}
-              onPress={() => this.switchCameraType()}/>
-            <TouchableHighlight
-              onPress={() => this.takePicture()}>
-              <View style={styles.capture}/>
-            </TouchableHighlight>
-            <Icon
-              name='flash'
-              type='font-awesome'
-              size={20}
-              color='white'
-              containerStyle={styles.switchFlash}
-              onPress={() => this.switchCameraType()}/>
-          </View>
-      </CameraX>
+        {
+          this.state.isPhoto
+          ?
+          (
+            <Image
+              style={{height: this.props.height, width: Sizes.Width}}
+              source={{ uri: this.state.image.path.toString() }}/>
+          )
+          :
+          (
+            <CameraX
+              ref={(cam) => {
+                this.camera = cam;
+              }}
+              style={[styles.preview, {height: this.props.height}]}
+              type={this.state.camera.type}
+              captureTarget={this.state.camera.captureTarget}
+              flashMode={this.state.camera.flashMode}
+              orientation={this.state.camera.orientation}
+              aspect={CameraX.constants.Aspect.fill}>
+              <View style={styles.row}>
+                <Icon
+                  name='sync'
+                  size={20}
+                  color='white'
+                  containerStyle={styles.switchCameraType}
+                  onPress={() => this.switchCameraType()}/>
+                <Icon
+                  name='flash'
+                  type='font-awesome'
+                  size={20}
+                  color='white'
+                  containerStyle={styles.switchFlash}
+                  onPress={() => this.switchCameraType()}/>
+              </View>
+            </CameraX>
+          )
+        }
+
+        <View style={{height: Sizes.Height*0.3, width: Sizes.Width, backgroundColor: '#F5F5F5', alignItems: 'center', justifyContent: 'center'}}>
+          <TouchableOpacity
+            onPress={() => this.takePicture()}>
+            <View style={styles.capture}/>
+          </TouchableOpacity>
+        </View>
     </View>
   );
 }
@@ -97,21 +113,21 @@ export default class Camera extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
   },
   preview: {
     flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center'
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   row: {
     flexDirection: 'row',
     alignSelf: 'stretch',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: 'red'
   },
   capture: {
     alignSelf: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'grey',
     borderRadius: 28,
     padding: 28,
     margin: 40
@@ -119,12 +135,14 @@ const styles = StyleSheet.create({
   switchCameraType: {
     position: 'absolute',
     alignSelf: 'center',
-    left: 40
+    left: 40,
+    bottom: 15,
   },
   switchFlash: {
     position: 'absolute',
     alignSelf: 'center',
-    right: 40
+    right: 40,
+    bottom: 15,
   },
   exitCamera: {
     position: 'absolute',
