@@ -10,7 +10,14 @@ import {
 import {
   Actions
 } from 'react-native-router-flux';
-import Firebase from '../utils/Firebase';
+import * as Firebase from 'firebase';
+import Database from '../utils/Firebase';
+import {
+  LoginManager,
+  GraphRequest,
+  GraphRequestManager,
+  AccessToken
+} from 'react-native-fbsdk';
 
 // components
 import ContentCoverSlider from '../components/common/ContentCoverSlider';
@@ -28,6 +35,7 @@ export default class Login extends Component {
 
     // bindings
     this.loginWithEmail = this.loginWithEmail.bind(this);
+    this.loginWithFacebook = this.loginWithFacebook.bind(this);
   }
 
   // returns
@@ -79,6 +87,54 @@ export default class Login extends Component {
     });
   }
 
+  loginWithFacebook() {
+    // user grants endpoints permissions
+    LoginManager.logInWithReadPermissions([
+      'public_profile',
+      'email'
+    ]).then(
+      (result) => {
+        if (!result.isCancelled) {
+          AccessToken.getCurrentAccessToken().then(
+            data => {
+              Firebase.auth().signInWithCredential(
+                Firebase.auth.FacebookAuthProvider.credential(
+                  data.accessToken.toString()
+                )
+              ).then(
+                user => {
+                  const infoRequest = new GraphRequest(
+                    `/me?fields=id,name,picture,first_name,last_name,email`,
+                    null,
+                    this._responseInfoCallback,
+                  )
+                  // start the graph request
+                  new GraphRequestManager().addRequest(infoRequest).start();
+                }
+              ).catch(error => console.log(error))
+            },
+
+          )
+        } else {
+          console.log('Log in Cancelled');
+        }
+      },
+      (error) => {
+        console.log('Login fail with error: ' + error);
+      });
+    }
+
+    // response from Facebook GraphAPI
+    _responseInfoCallback(error: ?Object, result: ?Object) {
+      if (error) {
+        alert('Error fetching data: ' + error.toString());
+      } else {
+        // TODO: save email, avatar or other user infos to Firebase
+        console.log(result);
+
+      }
+    }
+
   render() {
     return (
       <ContentCoverSlider title='Your Flock Account' backAction={false}>
@@ -95,6 +151,7 @@ export default class Login extends Component {
             Styles.Card, styles.card
           ]}>
           <Button
+            onPress={this.loginWithFacebook}
             icon={{
               name: 'facebook',
               type: 'entypo',
